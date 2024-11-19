@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MonControleur::class, 'index'])->name('index');
+
+Route::get('/album', [MonControleur::class, 'album'])->name('album');
+
+Route::get('/connexion', [MonControleur::class, 'connexion'])->name('connexion');
+
+
+
