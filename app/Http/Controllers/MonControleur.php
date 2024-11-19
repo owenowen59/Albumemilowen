@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\MonControleur;
+namespace App\Http\Controllers;
 
 
 use App\Models\Album;
@@ -29,5 +29,8 @@ class MonControleur extends Controller
     }
     function photo(){
         return view('photo');
+    }
+    function album(){
+        return view('album');
     }
 }
