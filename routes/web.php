@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MonControleur;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MonControleur::class, 'index'])->name('index');
 
 Route::get('/album', [MonControleur::class, 'album'])->name('album');
+
+Route::get('/photo', [MonControleur::class, 'photo'])->name('photo');
 
 Route::get('/connexion', [MonControleur::class, 'connexion'])->name('connexion');
 
