@@ -16,7 +16,8 @@ use App\Http\Controllers\MonControleur;
 
 Route::get('/', [MonControleur::class, 'index'])->name('index');
 
-Route::get('/album', [MonControleur::class, 'album'])->name('album');
+Route::get('/album', [MonControleur::class, 'albums'])->name('album');
+Route::get('/album/{id}', [MonControleur::class, 'detailsAlbum'])->name('detailsAlbum')->where(['id'=>'[0-9]+']);
 
 Route::get('/photo', [MonControleur::class, 'photo'])->name('photo');
 
