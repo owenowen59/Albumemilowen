@@ -30,7 +30,15 @@ class MonControleur extends Controller
     function photo(){
         return view('photo');
     }
-    function album(){
-        return view('album');
+
+    public function albums(){
+        $albums = Album::all();
+        return view("albums", ["albums" => $albums]);
+    }
+
+
+    function detailsAlbum($id){
+        $albums = Album::findOrFail($id);
+    return view("detailsAlbum", ["albums" => $albums]);
     }
 }
