@@ -38,7 +38,7 @@ class MonControleur extends Controller
 
 
     function detailsAlbum($id){
-        $albums = Album::findOrFail($id);
-    return view("detailsAlbum", ["albums" => $albums]);
+        $photos = Photo::findOrFail($id);
+    return view("detailsAlbum", ["photos" => $photos]);
     }
 }

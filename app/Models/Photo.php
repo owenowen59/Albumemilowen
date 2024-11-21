@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
+    public $table ="photos";
     use HasFactory;
     public $timestamps = false;
 
