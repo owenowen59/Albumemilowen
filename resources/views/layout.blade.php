@@ -9,7 +9,7 @@
 <body>
 <header>
     <nav id="menu">
-        <a href="#">
+        <a href="{{route('index')}}">
             <img src="{{asset('/img/logo.webp')}}" alt="logo" class="logo">
         </a>
 
@@ -36,7 +36,11 @@
         @yield('contenu')
     </main>
 
-    <footer></footer>
+    <footer>
+        <div>
+            <p>Salut tout le monde</p>
+        </div>
+    </footer>
 
 </body>
 </html>
