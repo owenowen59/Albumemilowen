@@ -28,8 +28,8 @@
             <li><a href="{{route('connexion')}}" class="mot-nav">Connexion</a></li>
             @auth
         
-                <a href="{{route('creerFilm')}}">Ajouter un Film</a>
-                <a href="{{route('creerPersonne')}}"> Créer une personne </a>
+                <a href="{{route('ajouteralbum')}}">Ajouter un Album</a>
+                <a href="{{route('ajouterphoto')}}">Ajouter une Photo</a>
                 <a href="{{route('logout')}}"
                 onclick="document.getElementById('logout').submit(); return false;">Se déconnecter</a>
                 <form id="logout" action="{{route('logout')}}" method="post">
