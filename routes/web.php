@@ -17,9 +17,15 @@ use App\Http\Controllers\MonControleur;
 Route::get('/', [MonControleur::class, 'index'])->name('index');
 
 Route::get('/album', [MonControleur::class, 'albums'])->name('album');
-Route::get('/album/{id}', [MonControleur::class, 'detailsAlbum'])->name('detailsAlbum')->where(['id'=>'[0-9]+']);
+Route::get('/album/photos', [MonControleur::class, 'detailsAlbum'])->name('detailsAlbum')/*-where(['id'=>'[0-9]+'])*/;
 
 Route::get('/photo', [MonControleur::class, 'photo'])->name('photo');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/album/Ajouterphotos', [MonControleur::class, 'ajouterphoto'])->name('ajouterphoto')/*-where(['id'=>'[0-9]+'])*/;
+    Route::get('/album/Ajouteralbums', [MonControleur::class, 'ajouteralbum'])->name('ajouteralbum')/*-where(['id'=>'[0-9]+'])*/;
+});
+
 
 Route::get('/connexion', [MonControleur::class, 'connexion'])->name('connexion');
 
