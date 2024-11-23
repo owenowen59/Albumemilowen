@@ -27,8 +27,13 @@ class MonControleur extends Controller
     function connexion(){
         return view('connexion');
     }
-    function photo(){
-        return view('photo');
+    function photos(){
+        $photos = Photo::all();
+
+        
+        return view('photo', [
+            "photos" => $photos
+        ]);
     }
 
     public function albums(){
@@ -37,8 +42,29 @@ class MonControleur extends Controller
     }
 
 
-    function detailsAlbum($id){
-        $photos = Photo::findOrFail($id);
-    return view("detailsAlbum", ["photos" => $photos]);
+    public function detailsAlbum($album_id)
+    {/*
+        $album = Album::with('photos')->findOrFail($id);
+    
+        return view('detailsAlbum', ['album' => $album]);*/
+            // Récupérer l'album
+        $albums = DB::select('SELECT * FROM albums WHERE id = ?', [$album_id]);
+        if (empty($albums)) {
+            abort(404, "Album non trouvé");
+        }
+
+        // Récupérer les photos associées
+        $photos = DB::select('SELECT * FROM photos WHERE album_id = ?', [$album_id]);
+
+        // Si aucune photo, `$photos` sera un tableau vide
+        $photos = $photos ?? [];
+
+        return view('detailsAlbum', [
+            'albums' => $albums[0],
+            'photos' => $photos,
+        ]);
     }
+
+
+
 }

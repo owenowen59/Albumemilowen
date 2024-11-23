@@ -9,6 +9,9 @@ class Tag extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $table = 'tags';
+
+    protected $fillable = ['nom'];
 
     public function photos() {
         return $this->belongsToMany(Photo::class, "possede_tag", "tag_id", "photo_id");
