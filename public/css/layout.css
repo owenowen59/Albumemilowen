@@ -5,6 +5,9 @@
 }
 
 
+/* Le header de la page pour l'application de l'album photo */
+
+
 header {
     display: flex;
     justify-content: space-between;
@@ -103,3 +106,16 @@ nav {
 }
 
 
+/* Le footer de la page pour l'application de l'album photo */
+
+footer {
+    display: flex;
+    background-color: #ffaa00;
+    justify-content: space-around;
+    align-items: center;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 30px 0;
+}
