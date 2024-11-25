@@ -66,5 +66,14 @@ class MonControleur extends Controller
     }
 
 
+    function ajouterphoto(){
+        return view('ajouterphoto');
+    }
+
+
+    function ajouteralbum(){
+        return view('ajouteralbum');
+    }
+
 
 }

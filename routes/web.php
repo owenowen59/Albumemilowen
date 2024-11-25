@@ -21,8 +21,8 @@ Route::get('/album/{id}', [MonControleur::class, 'detailsAlbum'])->name('details
 Route::get('/photos', [MonControleur::class, 'photos'])->name('photo');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/album/Ajouterphotos', [MonControleur::class, 'ajouterphoto'])->name('ajouterphoto')/*-where(['id'=>'[0-9]+'])*/;
-    Route::get('/album/Ajouteralbums', [MonControleur::class, 'ajouteralbum'])->name('ajouteralbum')/*-where(['id'=>'[0-9]+'])*/;
+    Route::get('/ajouterphoto', [MonControleur::class, 'ajouterphoto'])->name('ajouterphoto');
+    Route::get('/ajouteralbum', [MonControleur::class, 'ajouteralbum'])->name('ajouteralbum');
 });
 
 
