@@ -125,11 +125,11 @@ class MonControleur extends Controller
     }
 
 
-    
+
     public function ajouteralbum()
     {
         $albums = Album::all();
-        return view('ajouterphoto', compact('albums')); 
+        return view('ajouteralbum', compact('albums')); 
     }
 
     public function enregistreralbum(Request $request)
