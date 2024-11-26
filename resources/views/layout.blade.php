@@ -42,9 +42,7 @@
    
 
     <main>
-        @auth
-            Bonjour {{Auth::user()->name}}
-        @endauth
+        
         @yield('contenu')
     </main>
 

@@ -22,7 +22,13 @@ Route::get('/photos', [MonControleur::class, 'photos'])->name('photo');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/ajouterphoto', [MonControleur::class, 'ajouterphoto'])->name('ajouterphoto');
+    Route::post('/enregistrerphoto', [MonControleur::class, 'enregistrerphoto'])->name('enregistrerphoto');
     Route::get('/ajouteralbum', [MonControleur::class, 'ajouteralbum'])->name('ajouteralbum');
+    Route::post('/enregistreralbum', [MonControleur::class, 'enregistreralbum'])->name('enregistreralbum');
+
+    Route::delete('/photos/{id}', [MonControleur::class, 'supprimerPhoto'])->name('photos.supprimer');
+    Route::delete('/albums/{id}', [MonControleur::class, 'supprimerAlbum'])->name('albums.supprimer');
+
 });
 
 

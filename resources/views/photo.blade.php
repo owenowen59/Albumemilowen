@@ -21,6 +21,11 @@
     <p>Pas de tags associés à cette photo.</p>
 @endif
 </li>
+    <form action="{{ route('photos.supprimer', $photo->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+    </form>
 @endforeach
 </ul>
 @endsection
