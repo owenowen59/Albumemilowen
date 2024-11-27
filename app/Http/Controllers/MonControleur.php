@@ -20,9 +20,38 @@ class MonControleur extends Controller
 {
     use AuthorizesRequests, ValidatesRequests;
 
+
+
+
+
     function index(){
         return view('index');
     }
+
+
+    public function search(Request $request)
+    {
+        $search = $request->input('layout');
+
+        if (empty($search)) {
+            return view('search', ['results' => []]);  
+        }
+
+        $search = '%' . $search . '%';
+
+        $results = DB::select(
+            'SELECT photos.id AS photo_id, photos.titre AS photo_title, photos.note, 
+                    albums.titre AS album_title
+            FROM photos
+            LEFT JOIN albums ON photos.album_id = albums.id
+            WHERE LOWER(photos.titre) LIKE LOWER(?)',
+            [$search]
+        );
+
+        return view('search', ['results' => $results]);
+    }
+
+
 
     function connexion(){
         return view('connexion');

@@ -15,6 +15,8 @@ use App\Http\Controllers\MonControleur;
 */
 
 Route::get('/', [MonControleur::class, 'index'])->name('index');
+//Route::get('/search', [MonControleur::class, 'search'])->name('search');
+Route::post('/search', [MonControleur::class, 'search'])->name('search');
 
 Route::get('/album', [MonControleur::class, 'albums'])->name('album');
 Route::get('/album/{id}', [MonControleur::class, 'detailsAlbum'])->name('detailsAlbum');

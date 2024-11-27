@@ -37,6 +37,12 @@
             @endauth
         </ul>
     </nav>
+    <form action="{{ route('search') }}" method="POST">
+        @csrf
+        <input type="text" name="search" placeholder="Rechercher...">
+        <button type="submit">Chercher</button>
+    </form>
+    
 </header>
 
    
