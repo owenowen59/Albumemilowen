@@ -1,7 +1,7 @@
 @extends("layout")
 
 @section("contenu")
-    @include("errors")
+
 <form action="{{route('login')}}" method="post">
 @csrf
   <input type="email" name="email" required placeholder="Email" /><br />

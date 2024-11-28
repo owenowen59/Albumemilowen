@@ -1,5 +1,9 @@
+//Code pour la barre nav
+document.addEventListener("DOMContentLoaded", function() {
+    const burger = document.querySelector(".burger");
+    const menu = document.querySelector(".menu-items");
 
-document.getElementById('burger').addEventListener('click', function () {
-    const menu = document.querySelector('.menu-items');
-    menu.classList.toggle('active');
+    burger.addEventListener("click", function() {
+        menu.classList.toggle("active");
+    });
 });

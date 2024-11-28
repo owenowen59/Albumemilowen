@@ -15,15 +15,22 @@ use App\Http\Controllers\MonControleur;
 */
 
 Route::get('/', [MonControleur::class, 'index'])->name('index');
+//Route::get('/search', [MonControleur::class, 'search'])->name('search');
+Route::post('/search', [MonControleur::class, 'search'])->name('search');
 
 Route::get('/album', [MonControleur::class, 'albums'])->name('album');
-Route::get('/album/photos', [MonControleur::class, 'detailsAlbum'])->name('detailsAlbum')/*-where(['id'=>'[0-9]+'])*/;
-
-Route::get('/photo', [MonControleur::class, 'photo'])->name('photo');
+Route::get('/album/{id}', [MonControleur::class, 'detailsAlbum'])->name('detailsAlbum');
+Route::get('/photos', [MonControleur::class, 'photos'])->name('photo');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/album/Ajouterphotos', [MonControleur::class, 'ajouterphoto'])->name('ajouterphoto')/*-where(['id'=>'[0-9]+'])*/;
-    Route::get('/album/Ajouteralbums', [MonControleur::class, 'ajouteralbum'])->name('ajouteralbum')/*-where(['id'=>'[0-9]+'])*/;
+    Route::get('/ajouterphoto', [MonControleur::class, 'ajouterphoto'])->name('ajouterphoto');
+    Route::post('/enregistrerphoto', [MonControleur::class, 'enregistrerphoto'])->name('enregistrerphoto');
+    Route::get('/ajouteralbum', [MonControleur::class, 'ajouteralbum'])->name('ajouteralbum');
+    Route::post('/enregistreralbum', [MonControleur::class, 'enregistreralbum'])->name('enregistreralbum');
+
+    Route::delete('/photos/{id}', [MonControleur::class, 'supprimerPhoto'])->name('photos.supprimer');
+    Route::delete('/albums/{id}', [MonControleur::class, 'supprimerAlbum'])->name('albums.supprimer');
+
 });
 
 
