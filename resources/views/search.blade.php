@@ -2,19 +2,21 @@
 
 @section('contenu')
 
-@if(!empty($results))
-    <div class="search-results">
-        @foreach($results as $photo)
-            <div class="photo-result">
-                <h3>Photo : {{ $photo->photo_titre }}</h3>
-                <img src="{{ $photo->url }}" width= 200px;>
-                <p>Note : {{ $photo->note }}</p>
-                <p>Album : {{ $photo->album_titre }}</p>
-            </div>
+@if($results)
+    <h2>Les résultats de la recherche</h2>
+    <ul>
+        @foreach($results as $result)
+            <li>
+                Photo : {{ $result->photo_titre }} - 
+                Note : {{ $result->photo_note ?? 'Non notée' }} - 
+                URL : <img src="{{ $result->photo_url }}" width= 200px> - 
+                Album : {{ $result->album_titre ?? 'Aucun album' }}
+            </li>
         @endforeach
-    </div>
+    </ul>
 @else
-    <p>Aucune photo trouvée.</p>
+    <p>Aucun résultat trouvé.</p>
 @endif
+
 
 @endsection

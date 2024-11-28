@@ -31,21 +31,28 @@ class MonControleur extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->input('layout');
+        $search = $request->input('search');
 
         
 
-        $search = '%' . $search . '%';
+        $searchTerm = '%' . strtolower($search) . '%';
 
         
         $results = DB::select(
-            'SELECT $search = photos.titre AS photo_titre, albums.titre AS album_titre FROM photos
-            LEFT JOIN albums ON photos.album_id = albums.id
-            WHERE LOWER(photos.titre) LIKE LOWER(?)',
-            [$search]
+            'SELECT 
+                photos.titre AS photo_titre, 
+                photos.note AS photo_note, 
+                photos.url AS photo_url, 
+                albums.titre AS album_titre
+             FROM photos
+             LEFT JOIN albums ON photos.album_id = albums.id
+             WHERE LOWER(photos.titre) LIKE ?',
+            [$searchTerm]
         );
 
-        return view('search', ['results' => $results]);
+        
+
+        return view('search', ['results' => $results,]);
     }
 
 
@@ -57,9 +64,7 @@ class MonControleur extends Controller
         $photos = Photo::all();
 
         
-        return view('photo', [
-            "photos" => $photos
-        ]);
+        return view('photo', ["photos" => $photos]);
     }
 
     public function albums(){
