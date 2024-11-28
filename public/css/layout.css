@@ -20,7 +20,6 @@ header {
 nav {
     display: flex;
     align-items: center;
-    
 }
 
 .logo {
@@ -39,16 +38,9 @@ nav {
 }
 
 /* Icône burger */
-.burger {
-    /*
-    display: none; 
-    flex-direction: column;
-    justify-content: space-between;
-    width: 25px;
-    height: 20px;
-    cursor: pointer;*/
 
-    display: none;
+.burger {
+    display: flex;
     font-size: 30px;
     background: none;
     border: none;
@@ -104,6 +96,47 @@ nav {
         margin-right: 20px;
     }
 }
+
+
+.Rectangle-Rechercher {
+    border-radius: 24px;
+    padding: 5px 10px;
+    border: 0px solid rgb(255, 255, 255); 
+
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#loupe {
+    display: flex;
+    height: auto;
+    width: 10px;
+    color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* Le footer de la page pour l'application de l'album photo */
