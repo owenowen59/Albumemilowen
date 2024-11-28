@@ -33,16 +33,13 @@ class MonControleur extends Controller
     {
         $search = $request->input('layout');
 
-        if (empty($search)) {
-            return view('search', ['results' => []]);  
-        }
+        
 
         $search = '%' . $search . '%';
 
+        
         $results = DB::select(
-            'SELECT photos.id AS photo_id, photos.titre AS photo_title, photos.note, 
-                    albums.titre AS album_title
-            FROM photos
+            'SELECT $search = photos.titre AS photo_titre, albums.titre AS album_titre FROM photos
             LEFT JOIN albums ON photos.album_id = albums.id
             WHERE LOWER(photos.titre) LIKE LOWER(?)',
             [$search]
