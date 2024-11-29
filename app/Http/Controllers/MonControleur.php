@@ -69,9 +69,27 @@ class MonControleur extends Controller
 
     public function albums(){
         $albums = Album::all();
+        
+
         return view("albums", ["albums" => $albums]);
+
     }
 
+    public function trialbum(Request $request)
+    {
+        $sort = $request->query('sort', 'asc'); // Par défaut : 'asc'
+        $albums = Album::orderBy('titre', $sort)->get();
+    
+        return view('albums', compact('albums'));
+    }
+
+    public function triphoto(Request $request)
+    {
+        $sort = $request->query('sort', 'asc'); // Par défaut : 'asc'
+        $photos = Photo::orderBy('titre', $sort)->get();
+    
+        return view('photo', compact('photos'));
+    }
 
     public function detailsAlbum($album_id)
     {/*

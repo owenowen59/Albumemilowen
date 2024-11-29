@@ -1,8 +1,9 @@
 @extends('layout')
 
 @section('contenu')
-<a href="?ordre=annee">Tri par année</a>
-<a href="?ordre=titre">Tri par titre</a>
+
+<a href="?sort=asc">Trier A-Z</a>
+<a href="?sort=desc">Trier Z-A</a>
 Les albums: 
 <ul>
         @foreach($albums as $albums)

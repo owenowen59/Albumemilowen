@@ -6,6 +6,8 @@
         <li><img src="{{$photo->url}}" alt="image de {{$photo->titre}}" width="200">{{$photo->titre}} {{$photo->tag}}</li>
     @endforeach
 </ul> -->
+<a href="?sort=asc">Trier A-Z</a>
+<a href="?sort=desc">Trier Z-A</a>
 <ul>
 @foreach($photos as $photo)
 <li><img src="{{$photo->url}}" alt="image de {{$photo->titre}}" width="200">{{$photo->titre}} {{$photo->tag}}

@@ -19,8 +19,11 @@ Route::get('/', [MonControleur::class, 'index'])->name('index');
 Route::post('/search', [MonControleur::class, 'search'])->name('search');
 
 Route::get('/album', [MonControleur::class, 'albums'])->name('album');
+Route::get('/album', [MonControleur::class, 'trialbum'])->name('album');
 Route::get('/album/{id}', [MonControleur::class, 'detailsAlbum'])->name('detailsAlbum');
 Route::get('/photos', [MonControleur::class, 'photos'])->name('photo');
+Route::get('/photos', [MonControleur::class, 'triphoto'])->name('photo');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/ajouterphoto', [MonControleur::class, 'ajouterphoto'])->name('ajouterphoto');
