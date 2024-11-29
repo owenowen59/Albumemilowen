@@ -14,12 +14,13 @@
             <li>
             <img src="{{$photo->url}}" alt="image de {{$photo->titre}}" width="200">{{$photo->titre}}
             </li>
-
+            @auth
             <form action="{{ route('photos.supprimer', $photo->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?');">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Supprimer</button>
             </form>
+            @endauth
         @endforeach
     </ul>
 @else

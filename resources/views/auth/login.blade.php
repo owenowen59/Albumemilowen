@@ -9,4 +9,5 @@
   Remember me<input type="checkbox" name="remember"   /><br />
   <input type="submit" /><br />
 </form>
+Pas de compte  ? <a href="{{route('register')}}">Inscrivez-vous</a>
 @endsection

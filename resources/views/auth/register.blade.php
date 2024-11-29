@@ -9,5 +9,5 @@
     <input type="password" name="password_confirmation" required placeholder="password" /><br />
     <input type="submit" /><br />
 </form>
-Déjà un compte  ? <a href="{{route('login')}}">Connectez vous</a>
+Déjà un compte  ? <a href="{{route('login')}}">Connectez-vous</a>
 @endsection
