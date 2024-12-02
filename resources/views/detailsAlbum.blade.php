@@ -7,7 +7,7 @@
 
 <h2>Photos</h2>
 
-
+  
 @if(isset($photos) && count($photos) > 0)
     <ul>
         @foreach ($photos as $photo)

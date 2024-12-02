@@ -120,56 +120,60 @@ class MonControleur extends Controller
         return view('ajouterphoto', compact('albums'));
     }
     public function enregistrerphoto(Request $request)
-    {
-        $request->validate([
-            'titre' => 'required|string|max:255',
-            'photo_option' => 'required|in:url,local',
-            'url' => 'nullable|required_if:photo_option,url|url',
-            'local_file' => 'nullable|required_if:photo_option,local|image|mimes:jpeg,png,jpg,gif|max:2048',
-            
-            'note' => 'required|numeric|min:0|max:10',
-            'tags' => 'nullable|string',
-            'album_id' => 'required|exists:albums,id',
-        ]);
+{
+    // Validation des données
+    $request->validate([
+        'titre' => 'required|string|max:255',
+        'photo_option' => 'required|in:url,local',
+        'url' => 'nullable|required_if:photo_option,url|url',
+        'local_file' => 'nullable|required_if:photo_option,local|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'note' => 'required|numeric|min:0|max:10',
+        'tags' => 'nullable|string',
+        'album_id' => 'required|exists:albums,id',
+    ]);
 
-        $path = null;
+    // Initialisation du chemin d'image
+    $path = null;
 
-        
-        if ($request->photo_option === 'url') {
-            $path = $request->url;
-        }
+    // Gestion de l'option "url"
+    if ($request->photo_option === 'url') {
+        $path = $request->url;
+    }
 
-        if ($request->photo_option === 'local') {
-            $file = $request->file('local_file');
-            $path = $file->store('photos', 'public'); 
-            $path = asset('storage/' . $path); 
-        }
+    // Gestion de l'option "local" (fichier téléchargé)
+    if ($request->photo_option === 'local') {
+        $file = $request->file('local_file');
+        $hashname = $file->hashName(); // Génère un nom unique
+        $file->storeAs('photos', $hashname, 'public'); // Stocke dans "storage/app/public/photos"
+        $path = env("APP_URL") . "/storage/photos/$hashname"; // Génère l'URL complète
+    }
 
-        $photo = new Photo();
-        $photo->titre = $request->titre;
-        $photo->url = $path; 
-        $photo->note = $request->note;
-        $photo->album_id = $request->album_id;
-        $photo->save();
+    // Création et sauvegarde de la photo
+    $photo = new Photo();
+    $photo->titre = $request->titre;
+    $photo->url = $path; // Ajout du chemin de l'image
+    $photo->note = $request->note;
+    $photo->album_id = $request->album_id;
+    $photo->save();
 
+    // Gestion des tags
+    if (!empty($request->tags)) {
+        $tagNames = explode(',', $request->tags); // Divise les tags par virgule
+        $tagIds = [];
 
-        if (!empty($request->tags)) {
-            $tagNames = explode(',', $request->tags); // Diviser les tags par virgule
-            $tagIds = [];
-    
-            foreach ($tagNames as $tagName) {
-                $tagName = trim($tagName); // Supprimer les espaces autour
-                if (!empty($tagName)) {
-                    // Vérifiez si le tag existe déjà
-                    $tag = Tag::firstOrCreate(['nom' => $tagName]);
-                    $tagIds[] = $tag->id;
-                }
+        foreach ($tagNames as $tagName) {
+            $tagName = trim($tagName); // Supprime les espaces inutiles
+            if (!empty($tagName)) {
+                $tag = Tag::firstOrCreate(['nom' => $tagName]); // Crée ou récupère le tag
+                $tagIds[] = $tag->id;
             }
-    
-            // Associez les tags à la photo
-            $photo->tags()->sync($tagIds);
         }
+
+        // Synchronise les tags avec la photo
+        $photo->tags()->sync($tagIds);
+    }
     
+    // Redirection avec un message de succès
         return redirect()->route('ajouterphoto')->with('success', 'Photo ajoutée avec succès.');
     }
 
