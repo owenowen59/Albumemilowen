@@ -10,6 +10,7 @@
 </head>
 <body>
 <header>
+    
 
     <nav id="menu">
         <a href="{{route('index')}}">
@@ -42,7 +43,6 @@
         <input type="text" name="search" placeholder="Rechercher..." class="Rectangle-Rechercher">
         <button type="submit" class="Rectangle-Rechercher"><i class='bx bx-search' id="loupe"></i></button>
     </form>
-
 
     <button class="burger" aria-label="Menu">☰</button>
     
