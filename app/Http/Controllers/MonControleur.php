@@ -9,6 +9,9 @@ use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
@@ -115,13 +118,19 @@ class MonControleur extends Controller
     }
 
 
-    public function ajouterphoto(){
-        $albums = Album::all();
-        return view('ajouterphoto', compact('albums'));
+    public function ajouterphoto()
+    {
+    $albums = Album::all();
+    return view('ajouterphoto', compact('albums'));
     }
+
     public function enregistrerphoto(Request $request)
-{
-    // Validation des données
+    {
+    $messages = [
+        'url.required_if' => 'URL requise lorsque vous choisissez option URL.',
+        'local_file.required_if' => 'fichier local requis lorsque vous choisissez option fichier local.',
+    ];
+
     $request->validate([
         'titre' => 'required|string|max:255',
         'photo_option' => 'required|in:url,local',
@@ -130,51 +139,43 @@ class MonControleur extends Controller
         'note' => 'required|numeric|min:0|max:10',
         'tags' => 'nullable|string',
         'album_id' => 'required|exists:albums,id',
-    ]);
+    ], $messages);
 
-    // Initialisation du chemin d'image
-    $path = null;
-
-    // Gestion de l'option "url"
-    if ($request->photo_option === 'url') {
-        $path = $request->url;
-    }
-
-    // Gestion de l'option "local" (fichier téléchargé)
-    if ($request->photo_option === 'local') {
-        $file = $request->file('local_file');
-        $hashname = $file->hashName(); // Génère un nom unique
-        $file->storeAs('photos', $hashname, 'public'); // Stocke dans "storage/app/public/photos"
-        $path = env("APP_URL") . "/storage/photos/$hashname"; // Génère l'URL complète
-    }
-
-    // Création et sauvegarde de la photo
     $photo = new Photo();
     $photo->titre = $request->titre;
-    $photo->url = $path; // Ajout du chemin de l'image
     $photo->note = $request->note;
     $photo->album_id = $request->album_id;
+
+    // Gestion des images
+    if ($request->photo_option === 'url') {
+        /* $path = $request->url->store('public/photos');
+        $photo->url = Storage::url($path); */
+
+
+         
+        
+        $imageName = $request->url;
+        $path = $imageName;
+        $photo->url = $path;
+    } else {
+        $path = $request->file('local_file')->store('public/photos');
+        $photo->url = Storage::url($path);
+    }
+
     $photo->save();
 
     // Gestion des tags
     if (!empty($request->tags)) {
-        $tagNames = explode(',', $request->tags); // Divise les tags par virgule
+        $tagNames = array_filter(array_map('trim', explode(',', $request->tags))); // Supprime espaces vides
         $tagIds = [];
-
         foreach ($tagNames as $tagName) {
-            $tagName = trim($tagName); // Supprime les espaces inutiles
-            if (!empty($tagName)) {
-                $tag = Tag::firstOrCreate(['nom' => $tagName]); // Crée ou récupère le tag
-                $tagIds[] = $tag->id;
-            }
+            $tag = Tag::firstOrCreate(['nom' => $tagName]);
+            $tagIds[] = $tag->id;
         }
-
-        // Synchronise les tags avec la photo
         $photo->tags()->sync($tagIds);
     }
-    
-    // Redirection avec un message de succès
-        return redirect()->route('ajouterphoto')->with('success', 'Photo ajoutée avec succès.');
+
+    return redirect()->route('ajouterphoto')->with('success', 'Photo ajoutée avec succès.');
     }
 
 

@@ -16,7 +16,15 @@
         <a href="{{route('index')}}">
             <img src="{{asset('/img/logo.webp')}}" alt="logo" class="logo">
         </a>
-        
+    </nav> 
+
+    <form action="{{ route('search') }}" method="POST">
+        @csrf
+        <input type="text" name="search" placeholder="Rechercher..." class="Rectangle-Rechercher">
+        <button type="submit" class="Rectangle-Rechercher"><i class='bx bx-search' id="loupe"></i></button>
+    </form>
+    
+    <nav>
         <ul class="menu-items">
             <li><a href="{{route('index')}}" class="mot-nav">Home Page</a></li>
             <li><a href="{{route('album')}}" class="mot-nav">Album</a></li>
@@ -35,14 +43,10 @@
                 <a href="{{route('register')}}" class="mot-nav">Inscription</a>
             @endauth
         </ul>
-    </nav>
+    </nav>  
 
 
-    <form action="{{ route('search') }}" method="POST">
-        @csrf
-        <input type="text" name="search" placeholder="Rechercher..." class="Rectangle-Rechercher">
-        <button type="submit" class="Rectangle-Rechercher"><i class='bx bx-search' id="loupe"></i></button>
-    </form>
+    
 
     <button class="burger" aria-label="Menu">☰</button>
     
