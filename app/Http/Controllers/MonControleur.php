@@ -189,15 +189,15 @@ class MonControleur extends Controller
     public function enregistreralbum(Request $request)
     {
         $request->validate([
-            'titre' => 'required|string|max:255',
+            'titre' => 'required|string|max:255',/*
             'creation' => 'required|date', 
-            'user_id' => 'nullable|exists:users,id', 
+            'user_id' => 'nullable|exists:users,id', */
         ]);
 
         $album = new Album();
         $album->titre = $request->titre;
-        $album->creation = $request->creation;
-        $album->user_id = $request->user_id; 
+        $album->creation = now();
+        $album->user_id = auth()->id(); 
         $album->save();
 
         return redirect()->route('ajouteralbum')->with('success', 'Album ajouté avec succès.');
