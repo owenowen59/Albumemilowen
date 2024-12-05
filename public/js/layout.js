@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
         menu.classList.toggle("active");
     });
 });
-
+/*
 function openModule(imageUrl, titre) {
     const module = document.getElementById("module");
     const moduleImg = document.getElementById("module-img");
@@ -20,8 +20,15 @@ function openModule(imageUrl, titre) {
     // Afficher le module
     module.style.display = "block";
 }
-
+*//*
 function closeModule() {
     const module = document.getElementById("module");
     module.style.display = "none";
-}
+}*/
+
+/*
+function agrandirImage() {
+    const image = document.getElementById('imagejs');
+    image.style.width = (image.clientWidth * 1.2) + 'px';
+    image.style.height = (image.clientHeight * 1.2) + 'px';
+}*/

@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('contenu')
+
 <h4>
 @auth
     Bonjour {{Auth::user()->name}}

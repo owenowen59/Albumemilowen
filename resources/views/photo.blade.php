@@ -11,9 +11,9 @@
 <ul>
     
 @foreach($photos as $photo)
-    <div class="gallery-item" onclick="openModule('{{ $photo->imageUrl }}', '{{ $photo->titre }}')">
 
-    <li><img src="{{$photo->url}}" alt="image de {{$photo->titre}}" width="200">{{$photo->titre}} {{$photo->tag}}
+
+    <li><img onclick="openModule('{{ $photo->Url }}', '{{ $photo->titre }}')" src="{{$photo->url}}" alt="image de {{$photo->titre}}" width="200">{{$photo->titre}} {{$photo->tag}}
     </div>
     <p>Note : {{ $photo->note ?? 'Non notée' }}</p>
     <h2>Tags :</h2>
@@ -38,12 +38,12 @@
     </ul>
 
 
-
+<!--
 <div id="module" class="module">
     <div class="module-content">
         <span class="close" onclick="closeModule()">&times;</span>
         <img id="module-img" src="" alt="image agrandie">
         <p id="module-text"></p>
     </div>
-</div>
+</div>-->
 @endsection
