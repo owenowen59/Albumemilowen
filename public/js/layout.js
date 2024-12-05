@@ -32,3 +32,5 @@ function agrandirImage() {
     image.style.width = (image.clientWidth * 1.2) + 'px';
     image.style.height = (image.clientHeight * 1.2) + 'px';
 }*/
+
+

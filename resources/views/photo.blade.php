@@ -1,13 +1,34 @@
 @extends('layout')
 
 @section('contenu')
+
 <!-- <ul>
     @foreach($photos as $photo)
         <li><img src="{{$photo->url}}" alt="image de {{$photo->titre}}" width="200">{{$photo->titre}} {{$photo->tag}}</li>
     @endforeach
 </ul> -->
-<a href="?sort=asc">Trier A-Z</a>
-<a href="?sort=desc">Trier Z-A</a>
+<style>
+  .hidden {
+    display: none; 
+  }
+</style>
+<a id="buttonazphoto" href="?sort=asc">Trier A-Z</a>
+<a id="buttonzaphoto" href="?sort=desc" style=".hidden">Trier Z-A</a>
+<script>
+    const buttonazphoto = document.getElementById('buttonazphoto');
+    const buttonzaphoto = document.getElementById('buttonzaphoto');
+
+buttonazphoto.addEventListener('click' => {
+        buttonazphoto.classList.add('hidden');
+        buttonzaphoto.classList.remove('hidden');
+});
+
+buttonzaphoto.addEventListener('click' => {
+    buttonzaphoto.classList.add('hidden');
+    buttonazphoto.classList.remove('hidden');
+    });
+
+</script>
 <ul>
     
 @foreach($photos as $photo)

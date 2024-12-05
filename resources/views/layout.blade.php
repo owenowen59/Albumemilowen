@@ -29,8 +29,10 @@
             <li><a href="{{route('index')}}" class="mot-nav">Accueil</a></li>
             <li><a href="{{route('album')}}" class="mot-nav">Album</a></li>
             <li><a href="{{route('photo')}}" class="mot-nav">Photo</a></li>
+            @guest
             <li><a href="{{route('login')}}" class="mot-nav">Se connecter</a></li>
             <li><a href="{{route('register')}}" class="mot-nav">Inscription</a></li>
+            @endguest
             @auth
         
                 <a href="{{route('ajouteralbum')}}" class="mot-nav">Ajouter un Album</a>
