@@ -5,8 +5,10 @@
 <a href="?sort=asc">Trier A-Z</a>
 <a href="?sort=desc">Trier Z-A</a>
 Les albums: 
-<ul>
+<ul class="toutalbum">
+
         @foreach($albums as $albums)
+            
             <h2><a href="{{route('detailsAlbum', ['id' => $albums->id])}}"> {{$albums->titre}}  {{$albums->creation}}</a></h2>
             @auth
             <form action="{{ route('albums.supprimer', $albums->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet album ?');">
@@ -16,5 +18,6 @@ Les albums:
             </form>
             @endauth
         @endforeach
+
 </ul>
 @endsection
