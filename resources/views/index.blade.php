@@ -1,7 +1,9 @@
 @extends('layout')
 
 @section('contenu')
-
+<head>
+<link rel="stylesheet" type="text/css" href="{{asset('/css/accueil.css')}}"/>
+</head>
 <h4>
 @auth
     Bonjour {{Auth::user()->name}}
