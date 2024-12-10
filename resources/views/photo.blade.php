@@ -54,11 +54,12 @@
         class="image-modal" 
              data-url="{{ $photo->url }}" 
              data-titre="{{ $photo->titre }}" 
+             data-note="{{ $photo->note }}" 
              data-tags="{{ $photo->tags->pluck('nom')->join(', ') }}">
-             {{$photo->titre}} 
-             {{$photo->tag}}
+        {{$photo->titre}} 
+             
     
-    <p>Note : {{ $photo->note ?? 'Non notée' }}</p>
+    <!-- <p>Note : {{ $photo->note ?? 'Non notée' }}</p>
     <h2>Tags :</h2>
     @if($photo->tags->count() > 0)
         <ul>
@@ -68,7 +69,7 @@
         </ul>
     @else
         <p>Pas de tags associés à cette photo.</p>
-    @endif
+    @endif -->
     </li>
     @auth
     <form action="{{ route('photos.supprimer', $photo) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?');">
@@ -80,6 +81,7 @@
     <div id="modal">
         <img id="modal-image" alt="Image agrandie" style="max-width: 100%; height: auto;">
         <span id="nom"></span>
+        <span id="note"></span>
         <span id="tag"></span>
         <button id="closeModal">Close</button>
     </div>

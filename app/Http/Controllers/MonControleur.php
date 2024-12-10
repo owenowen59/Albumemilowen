@@ -105,10 +105,16 @@ class MonControleur extends Controller
             abort(404, "Album non trouvé");
         }
 
-        // Récupérer les photos associées
-        $photos = DB::select('SELECT * FROM photos WHERE album_id = ?', [$album_id]);
+        // On récupère les photos associés à l'album
+        $photos = DB::select('SELECT photos.*, 
+        GROUP_CONCAT(tags.nom SEPARATOR ", ") AS tags
+        FROM photos
+        LEFT JOIN possede_tag ON photos.id = possede_tag.photo_id
+        LEFT JOIN tags ON possede_tag.tag_id = tags.id
+        WHERE photos.album_id = ?
+        GROUP BY photos.id', [$album_id]);
 
-        // Si aucune photo, `$photos` sera un tableau vide
+        // Le tableau `photos` sera un tableau vide si l'album sélectionné ne contient pas de photos
         $photos = $photos ?? [];
 
         return view('detailsAlbum', [
