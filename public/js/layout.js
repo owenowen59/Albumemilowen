@@ -7,30 +7,38 @@ document.addEventListener("DOMContentLoaded", function() {
         menu.classList.toggle("active");
     });
 });
-/*
-function openModule(imageUrl, titre) {
-    const module = document.getElementById("module");
-    const moduleImg = document.getElementById("module-img");
-    const moduleTitle = document.getElementById("module-title");
 
-    // Afficher l'image et le titre dans le module
-    moduleImg.src = imageUrl;
-    moduleTitle.textContent = titre;
 
-    // Afficher le module
-    module.style.display = "block";
-}
-*//*
-function closeModule() {
-    const module = document.getElementById("module");
-    module.style.display = "none";
-}*/
 
-/*
-function agrandirImage() {
-    const image = document.getElementById('imagejs');
-    image.style.width = (image.clientWidth * 1.2) + 'px';
-    image.style.height = (image.clientHeight * 1.2) + 'px';
-}*/
+document.addEventListener("DOMContentLoaded", () => {
+    const modal = document.getElementById("modal");
+    const modalImage = document.getElementById("modal-image");
+    const nomSpan = document.getElementById("nom");
+    const tagSpan = document.getElementById("tag");
+    const closeModal = document.getElementById("closeModal");
+
+    
+    document.querySelectorAll(".image-modal").forEach(image => {
+        image.addEventListener("click", () => {
+            const url = image.dataset.url;
+            const titre = image.dataset.titre;
+            const tags = image.dataset.tags;
+
+            modalImage.src = url;
+            modalImage.alt = `Image de ${titre}`;
+            nomSpan.textContent = `Nom : ${titre}`;
+            tagSpan.textContent = `Tags : ${tags}`;
+
+            modal.style.display = "block";
+        });
+    });
+
+    
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+});
+
+
 
 
