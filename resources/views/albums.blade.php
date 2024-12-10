@@ -1,9 +1,20 @@
 @extends('layout')
 
 @section('contenu')
+<style>
+    #zaalbum {
+        display: none; 
+    }
+    #zadate{
+        display: none;
+    }
+</style>
+<a id="azalbum" href="?sort=asc&sort_by=titre">Trier A-Z par titre</a>
+<a id="zaalbum" href="?sort=desc&sort_by=titre">Trier Z-A par titre</a>
 
-<a href="?sort=asc">Trier A-Z</a>
-<a href="?sort=desc">Trier Z-A</a>
+
+<a id="azdate" href="?sort=asc&sort_by=creation">Trier par date (Ascendant)</a>
+<a id="zadate" href="?sort=desc&sort_by=creation">Trier par date (Descendant)</a>
 Les albums: 
 <ul class="toutalbum">
 

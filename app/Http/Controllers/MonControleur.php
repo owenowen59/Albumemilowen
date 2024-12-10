@@ -80,9 +80,17 @@ class MonControleur extends Controller
 
     public function trialbum(Request $request)
     {
-        $sort = $request->query('sort', 'asc'); // Par défaut : 'asc'
-        $albums = Album::orderBy('titre', $sort)->get();
-    
+        $sortBy = $request->input('sort_by', 'titre'); // Par défaut, on trie par 'titre'
+        $sort = $request->input('sort', 'asc'); // Par défaut, l'ordre est ascendant
+
+        // Vérifier que les valeurs de 'sort' sont valides
+        if (!in_array($sort, ['asc', 'desc'])) {
+            $sort = 'asc'; // Valeur par défaut si invalide
+        }
+
+        // Appliquer le tri en fonction de la colonne et de l'ordre spécifiés
+        $albums = Album::orderBy($sortBy, $sort)->get();
+
         return view('albums', compact('albums'));
     }
 
