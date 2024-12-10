@@ -8,9 +8,12 @@
     @endforeach
 </ul> -->
 <style>
-    .hidden {
+    
+    #buttonzaphoto {
     display: none; 
     }
+    
+    
     #modal {
             display: none;
             position: fixed;
@@ -27,8 +30,10 @@
             margin-bottom: 10px;
     }
 </style>
+
 <a id="buttonazphoto" href="?sort=asc">Trier A-Z</a>
-<a id="buttonzaphoto" href="?sort=desc" style=".hidden">Trier Z-A</a>
+<a id="buttonzaphoto" href="?sort=desc">Trier Z-A</a>
+
 <script>
     /*
     const buttonazphoto = document.getElementById('buttonazphoto');
@@ -44,10 +49,10 @@
         buttonazphoto.classList.remove('hidden');
     });*/
 </script>
-<ul>
+<ul id="photo-list">
     
 @foreach($photos as $photo)
-    <li>
+    <li class="photo-item">
         <img src="{{$photo->url}}" 
         alt="image de {{$photo->titre}}" 
         width="200" 
@@ -56,7 +61,7 @@
              data-titre="{{ $photo->titre }}" 
              data-note="{{ $photo->note }}" 
              data-tags="{{ $photo->tags->pluck('nom')->join(', ') }}">
-        {{$photo->titre}} 
+             <span class="photo-title">{{$photo->titre}}</span>
              
     
     <!-- <p>Note : {{ $photo->note ?? 'Non notée' }}</p>
