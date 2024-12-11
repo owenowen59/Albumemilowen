@@ -1,3 +1,50 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; 
+}
+
 body {
-    background-color: #2048ff;
+    background-color: #5b5f97;
+}
+
+.texte-centre {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid white;
+    line-height: 50px;
+}
+
+.white-text-h1 {
+    color: white;
+    font-size: 60px;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+}
+
+.orange-text-h1 {
+    color: #ffc145;
+    font-size: 60px;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+}
+
+.white-text-p {
+    color: white;
+    font-size: 22px;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+    font-family: 'poppins';
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.test {
+    background: url(../img/cercle.svg), url(../img/cercle2.svg);
+    background-repeat:no-repeat;
+    background-position: top 30px left 50px,top 300px left 200px ;
+}
+
+
+@media (max-width: 768px) {
+
 }

@@ -61,10 +61,10 @@
     </main>
 
     <footer>
-        <div>
-            <a href="#" class="lien-footer">Mentions légales</a>
-            <a href="#" class="lien-footer">©COPYRIGHT MMI</a>
-            <a href="#" class="lien-footer">Conditions d’utilisation</a>
+        <div class="lien-footer">
+            <a href="#">Mentions légales</a>
+            <a href="#">©COPYRIGHT MMI</a>
+            <a href="#">Conditions d’utilisation</a>
         </div>
     </footer>
 
