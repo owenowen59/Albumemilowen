@@ -75,7 +75,6 @@
     @else
         <p>Pas de tags associés à cette photo.</p>
     @endif -->
-    </li>
     @auth
     <form action="{{ route('photos.supprimer', $photo) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?');">
         @csrf
@@ -83,6 +82,8 @@
         <button type="submit" class="btn btn-danger">Supprimer</button>
     </form>
     @endauth
+    </li>
+    
     <div id="modal">
         <img id="modal-image" alt="Image agrandie" style="max-width: 100%; height: auto;">
         <span id="nom"></span>
