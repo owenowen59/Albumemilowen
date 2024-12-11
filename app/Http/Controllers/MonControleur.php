@@ -63,6 +63,35 @@ class MonControleur extends Controller
     function connexion(){
         return view('connexion');
     }
+
+
+    function tagsphotos(Request $request)
+    {
+        $query = Photo::query();
+        $tags = Tag::all();
+
+        // Si un ou plusieurs tags sont sélectionnés, filtrez les photos
+        if ($request->has('tags') && !empty($request->tags)) {
+            $selectedTags = $request->tags;
+            $query->whereHas('tags', function ($q) use ($selectedTags) {
+                $q->whereIn('nom', $selectedTags);
+            });
+        }
+
+        // Appliquer un tri si spécifié
+        if ($request->has('sort')) {
+            $query->orderBy('titre', $request->sort);
+        }
+
+        $photos = $query->get();
+
+        return view('photo', [
+            'photos' => $photos,
+            'tags' => $tags,
+            'selectedTags' => $request->tags ?? [],
+        ]);
+    }
+    
     function photos(){
         $photos = Photo::all();
 
@@ -80,9 +109,17 @@ class MonControleur extends Controller
 
     public function trialbum(Request $request)
     {
-        $sort = $request->query('sort', 'asc'); // Par défaut : 'asc'
-        $albums = Album::orderBy('titre', $sort)->get();
-    
+        $sortBy = $request->input('sort_by', 'titre'); // Par défaut, on trie par 'titre'
+        $sort = $request->input('sort', 'asc'); // Par défaut, l'ordre est ascendant
+
+        // Vérifier que les valeurs de 'sort' sont valides
+        if (!in_array($sort, ['asc', 'desc'])) {
+            $sort = 'asc'; // Valeur par défaut si invalide
+        }
+
+        // Appliquer le tri en fonction de la colonne et de l'ordre spécifiés
+        $albums = Album::orderBy($sortBy, $sort)->get();
+
         return view('albums', compact('albums'));
     }
 
@@ -105,10 +142,16 @@ class MonControleur extends Controller
             abort(404, "Album non trouvé");
         }
 
-        // Récupérer les photos associées
-        $photos = DB::select('SELECT * FROM photos WHERE album_id = ?', [$album_id]);
+        // On récupère les photos associés à l'album
+        $photos = DB::select('SELECT photos.*, 
+        GROUP_CONCAT(tags.nom SEPARATOR ", ") AS tags
+        FROM photos
+        LEFT JOIN possede_tag ON photos.id = possede_tag.photo_id
+        LEFT JOIN tags ON possede_tag.tag_id = tags.id
+        WHERE photos.album_id = ?
+        GROUP BY photos.id', [$album_id]);
 
-        // Si aucune photo, `$photos` sera un tableau vide
+        // Le tableau `photos` sera un tableau vide si l'album sélectionné ne contient pas de photos
         $photos = $photos ?? [];
 
         return view('detailsAlbum', [
