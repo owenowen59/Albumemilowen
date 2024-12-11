@@ -33,8 +33,19 @@
 
 <a id="buttonazphoto" href="?sort=asc">Trier A-Z</a>
 <a id="buttonzaphoto" href="?sort=desc">Trier Z-A</a>
-
+<form method="get" action="{{ route('photo') }}">
+    <select name="tags[]" multiple>
+        <option value="">-- Sélectionnez des tags --</option>
+        @foreach($tags as $tag)
+            <option value="{{ $tag->nom }}" {{ in_array($tag->nom, $selectedTags ?? []) ? 'selected' : '' }}>
+                {{ $tag->nom }}
+            </option>
+        @endforeach
+    </select>
+    <button type="submit">Filtrer</button>
+</form>
 <script>
+
     /*
     const buttonazphoto = document.getElementById('buttonazphoto');
     const buttonzaphoto = document.getElementById('buttonzaphoto');

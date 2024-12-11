@@ -23,6 +23,7 @@ Route::get('/album', [MonControleur::class, 'trialbum'])->name('album');
 Route::get('/album/{id}', [MonControleur::class, 'detailsAlbum'])->name('detailsAlbum');
 Route::get('/photos', [MonControleur::class, 'photos'])->name('photo');
 Route::get('/photos', [MonControleur::class, 'triphoto'])->name('photo');
+Route::get('/photos', [MonControleur::class, 'tagsphotos'])->name('photo');
 
 
 Route::middleware(['auth'])->group(function () {

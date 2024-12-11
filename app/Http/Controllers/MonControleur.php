@@ -63,6 +63,35 @@ class MonControleur extends Controller
     function connexion(){
         return view('connexion');
     }
+
+
+    function tagsphotos(Request $request)
+    {
+        $query = Photo::query();
+        $tags = Tag::all();
+
+        // Si un ou plusieurs tags sont sélectionnés, filtrez les photos
+        if ($request->has('tags') && !empty($request->tags)) {
+            $selectedTags = $request->tags;
+            $query->whereHas('tags', function ($q) use ($selectedTags) {
+                $q->whereIn('nom', $selectedTags);
+            });
+        }
+
+        // Appliquer un tri si spécifié
+        if ($request->has('sort')) {
+            $query->orderBy('titre', $request->sort);
+        }
+
+        $photos = $query->get();
+
+        return view('photo', [
+            'photos' => $photos,
+            'tags' => $tags,
+            'selectedTags' => $request->tags ?? [],
+        ]);
+    }
+    
     function photos(){
         $photos = Photo::all();
 
