@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonazphoto = document.getElementById('buttonazphoto');
     const buttonzaphoto = document.getElementById('buttonzaphoto');
     const photoList = document.querySelector('#photo-list'); // Liste contenant les photos
+    const buttonnoteaz = document.getElementById('noteaz');
+    const buttonnoteza = document.getElementById('noteza');
 
     // Vérification si photoList existe
     if (!photoList) {
@@ -89,24 +91,67 @@ document.addEventListener("DOMContentLoaded", () => {
         photos.forEach(photo => photoList.appendChild(photo));
     }
 
+    function sortPhotosByNote(order) {
+        const photos = Array.from(photoList.children); // Récupère les enfants du conteneur photo
+    
+        photos.sort((a, b) => {
+            const noteA = parseFloat(a.dataset.note) || 0; // Récupère la note de data-note
+            const noteB = parseFloat(b.dataset.note) || 0;
+    
+            if (order === 'asc') {
+                return noteA - noteB; // Tri ascendant (0 -> 5)
+            } else {
+                return noteB - noteA; // Tri descendant (5 -> 0)
+            }
+        });
+    
+        // Réorganise les photos triées dans le DOM
+        photos.forEach(photo => photoList.appendChild(photo));
+    }
+
+
+
+
     // Initialisation des boutons et tri
     const urlParams = new URLSearchParams(window.location.search);
-    const currentSort = urlParams.get('sort');
-    if (currentSort === 'asc') {
-        buttonazphoto.style.display = "none";
-        buttonzaphoto.style.display = "block";
-        sortPhotos('asc');
-    } else if (currentSort === 'desc') {
-        buttonazphoto.style.display = "block";
-        buttonzaphoto.style.display = "none";
-        sortPhotos('desc');
+    const sort = urlParams.get('sort');
+    const sortBy = urlParams.get('sort_by');
+    if (sortBy === 'titre') {
+        if (sort === 'asc') {
+            buttonazphoto.style.display = "none";
+            buttonzaphoto.style.display = "block";
+            sortPhotos('asc');
+        } else if (sort === 'desc') {
+            buttonazphoto.style.display = "block";
+            buttonzaphoto.style.display = "none";
+            sortPhotos('desc');
+        }
     }
+
+
+
+
+    if (sortBy === 'note') {
+        if (sort === 'asc') {
+            buttonnoteaz.style.display = "none";
+            buttonnoteza.style.display = "block";
+            sortPhotosByNote('asc');
+        } else if (sort === 'desc') {
+            buttonnoteaz.style.display = "block";
+            buttonnoteza.style.display = "none";
+            sortPhotosByNote('desc');
+        }
+    }
+
+
+
 
     // Gestion des clics sur les boutons
     buttonazphoto.addEventListener('click', (e) => {
         e.preventDefault(); // Empêche le rechargement
         buttonazphoto.style.display = "none";
         buttonzaphoto.style.display = "block";
+        
 
         // Met à jour l'URL sans recharger
         const newUrl = new URL(window.location.href);
@@ -130,6 +175,24 @@ document.addEventListener("DOMContentLoaded", () => {
         // Applique le tri
         sortPhotos('desc');
     });
+
+    
+
+    /*
+    // Écouter les clics pour les boutons de tri par date
+    
+    
+    buttonnoteaz.addEventListener('click', (e) => {
+        e.preventDefault(); // Empêche le rechargement de la page
+        window.location.href = buttonnoteaz.href; // Redirige vers le lien pour trier
+        sortPhotosByNote('asc');
+    });
+
+    buttonnoteza.addEventListener('click', (e) => {
+        e.preventDefault(); // Empêche le rechargement de la page
+        window.location.href = buttonnoteza.href; // Redirige vers le lien pour trier
+        sortPhotosByNote('desc');
+    });*/
 });
 
 
@@ -140,6 +203,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttonzaalbum = document.getElementById('zaalbum');
     const buttonazdate = document.getElementById('azdate');
     const buttonzadate = document.getElementById('zadate');
+
+    
 
     // Vérifier l'état initial de la page via l'URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -168,6 +233,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    
+
     // Écouter les clics pour les boutons de tri par titre
     buttonzaalbum.addEventListener('click', (e) => {
         e.preventDefault(); // Empêche le rechargement de la page
@@ -189,5 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault(); // Empêche le rechargement de la page
         window.location.href = buttonazdate.href; // Redirige vers le lien pour trier
     });
+
+
 });
 

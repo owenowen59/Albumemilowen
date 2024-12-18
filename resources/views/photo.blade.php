@@ -12,7 +12,9 @@
     #buttonzaphoto {
     display: none; 
     }
-    
+    #noteaz{
+        display: none;
+    }
     
     #modal {
             display: none;
@@ -31,8 +33,10 @@
     }
 </style>
 
-<a id="buttonazphoto" href="?sort=asc">Trier A-Z</a>
-<a id="buttonzaphoto" href="?sort=desc">Trier Z-A</a>
+<a id="buttonazphoto" href="?sort=asc&sort_by=titre">Trier A-Z</a>
+<a id="buttonzaphoto" href="?sort=desc&sort_by=titre">Trier Z-A</a>
+<a id="noteaz" href="?sort=asc&sort_by=note">Trier par note 0-5 étoiles(Ascendant)</a>
+<a id="noteza" href="?sort=desc&sort_by=note">Trier par note 5-0 étoiles(Descendant)</a>
 <form method="get" action="{{ route('photo') }}">
     <select name="tags[]" multiple>
         <option value="">-- Sélectionnez des tags --</option>
