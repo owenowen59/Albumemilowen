@@ -205,7 +205,7 @@ class MonControleur extends Controller
         'photo_option' => 'required|in:url,local',
         'url' => 'nullable|required_if:photo_option,url|url',
         'local_file' => 'nullable|required_if:photo_option,local|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'note' => 'required|numeric|min:0|max:10',
+        'note' => 'required|numeric|min:0|max:5',
         'tags' => 'nullable|string',
         'album_id' => 'required|exists:albums,id',
     ], $messages);

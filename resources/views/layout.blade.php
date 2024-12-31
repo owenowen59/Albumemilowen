@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Flashback</title>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/layout.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('/css/album.css')}}"/>
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">

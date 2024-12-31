@@ -18,25 +18,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const noteSpan = document.getElementById("note");
     const closeModal = document.getElementById("closeModal");
 
-    console.log("coucou");
+    console.log("Modal initialization");
+
+    function generateStars(note) {
+        const fullStars = '★'.repeat(Math.floor(note));
+        const emptyStars = '☆'.repeat(5 - Math.floor(note));
+        return `${fullStars}${emptyStars}`;
+    }
+
     document.querySelectorAll(".image-modal").forEach(image => {
         image.addEventListener("click", () => {
             const url = image.dataset.url;
             const titre = image.dataset.titre;
             const tags = image.dataset.tags;
-            const note= image.dataset.note;
+            const note = parseFloat(image.dataset.note);
 
             modalImage.src = url;
             modalImage.alt = `Image de ${titre}`;
             nomSpan.textContent = `Nom : ${titre}`;
-            noteSpan.textContent = `Note : ${note} /5`;
+            noteSpan.innerHTML = `Note : ${generateStars(note)} (${note.toFixed(1)}/5)`;
             tagSpan.textContent = `Tags : ${tags}`;
             
             modal.style.display = "block";
         });
     });
 
-    
     closeModal.addEventListener("click", () => {
         modal.style.display = "none";
     });

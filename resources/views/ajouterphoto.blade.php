@@ -30,7 +30,7 @@
         </div>
 
         <label for="note">Note</label>
-        <input type="number" name="note" min="0" max="10" required>
+        <input type="number" name="note" min="0" max="5" required>
 
         <label for="tags">Tags</label>
         <input type="text" name="tags" placeholder="Exemple : nature, paysage">
