@@ -27,19 +27,21 @@
                          @foreach($albums as $albums)  
                                 
                         <div class="div-album">
-
+                                <a href="{{route('detailsAlbum', ['id' => $albums->id])}}" class="titre-album">
                                 <img src="https://www.journaldutextile.com/wp-content/uploads/2024/05/Les-activites-preferees-des-Francais-en-vacances-1024x683.jpg">
                                 <h2><a href="{{route('detailsAlbum', ['id' => $albums->id])}}" class="titre-album"> {{$albums->titre}} </a></h2>
+                                </a>
                                 <h2 class="titre-album"><a> {{$albums->creation}}</a></h2>
-
+                                
                                 @auth
                                 <form action="{{ route('albums.supprimer', $albums->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cet album ?');">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn-supp">Supprimer</button>
                                 </form>
+                                @endauth
                         </div>
-                        @endauth
+                        
                         @endforeach
                 </ul>
         </div>

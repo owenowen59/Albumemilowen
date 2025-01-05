@@ -17,7 +17,7 @@
 
                 <input type="text" name="titre" required placeholder="Titre de votre album..." id="un-rectangle">
                 
-
+<!--
                 <label class="custom-file-upload label" id="deux-rectangle" required placeholder="Titre de votre album...">
 
                         <p>Ajouter une couverture</p>
@@ -26,7 +26,7 @@
                         
                         <input type="file" name="coverImage" accept="image/*" class="hidden" required>
                
-                </label>
+                </label>-->
 
         <!--
                 

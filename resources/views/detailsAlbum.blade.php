@@ -2,10 +2,15 @@
 
 @section('contenu')
 
-<h1>{{ $albums->titre }}</h1>
+<head>
+<link rel="stylesheet" type="text/css" href="{{asset('/css/detailsalbum.css')}}"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" >
+</head>
 
 
-<h2>Photos</h2>
+
+
+<h2 class="titre-details">{{ $album->titre }}, Les différentes photos</h2>
 <style>
     .hidden {
     display: none; 
@@ -28,37 +33,77 @@
 </style>
   
 @if(isset($photos) && count($photos) > 0)
-    <ul>
-        @foreach ($photos as $photo)
-            <li>
-            <img src="{{$photo->url}}" 
-                alt="image de {{$photo->titre}}" 
-                width="200"
-                class="image-modal" 
-                    data-url="{{ $photo->url }}" 
-                    data-titre="{{ $photo->titre }}" 
-                    data-note="{{ $photo->note }}" 
-                    data-tags="{{ $photo->tags ?? 'Aucun tag' }}">
-                {{$photo->titre}}
-            </li>
+
+<ul id="photo-list" class="photo-grid">
+    @foreach($photos as $photo)
+        <li class="photo-item">
+            <div class="photo-container">
+                <img src="{{ $photo->url }}" alt="image de {{ $photo->titre }}" class="image-modal"
+                     data-url="{{ $photo->url }}"
+                     data-titre="{{ $photo->titre }}"
+                     data-note="{{ $photo->note }}"
+                     data-tags="{{ $photo->tags && $photo->tags->isNotEmpty() ? $photo->tags->pluck('nom')->join(', ') : 'Aucun tag' }}">
+            </div>
+            <span class="photo-title">{{ $photo->titre }}</span>
+
             @auth
-            <form action="{{ route('photos.supprimer', $photo->id) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?');">
+            <form action="{{ route('photos.supprimer', $photo) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?');">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Supprimer</button>
+                <button type="submit" class="btn btn-danger btn-supprimer">Supprimer</button>
             </form>
             @endauth
-            <div id="modal">
-                <img id="modal-image" alt="Image agrandie" style="max-width: 100%; height: auto;">
-                <span id="nom"></span>
-                <span id="note"></span>
-                <span id="tag"></span>
-                <button id="closeModal">Close</button>
-            </div>
-        @endforeach
-    </ul>
+        </li>
+    @endforeach
+</ul>
+
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <img id="modal-image" alt="Image agrandie" style="max-width: 100%; height: auto;">
+            <span id="nom"></span>
+            <span id="note"></span>
+            <span id="tag"></span>
+            <button id="closeModal" class="btn btn-close">Close</button>
+        </div>
+    </div>
 @else
     <p>Aucune photo trouvée pour cet album.</p>
 @endif
 
 @endsection
+
+
+
+<!--<ul id="photo-list" class="photo-grid">
+            @foreach($photos as $photo)
+                <li class="photo-item">
+                    <div class="photo-container">
+                        <img src="{{$photo->url}}" alt="image de {{$photo->titre}}" class="image-modal" 
+                            data-url="{{ $photo->url }}" 
+                            data-titre="{{ $photo->titre }}" 
+                            data-note="{{ $photo->note }}" 
+                            data-tags="{{ $photo->tags->pluck('nom')->join(', ') }}">
+                    </div>
+                    <span class="photo-title">{{$photo->titre}}</span>
+
+                    @auth
+                    <form action="{{ route('photos.supprimer', $photo) }}" method="POST" onsubmit="return confirm('Voulez-vous vraiment supprimer cette photo ?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-supprimer">Supprimer</button>
+                    </form>
+                    @endauth
+                </li>
+            @endforeach
+        </ul>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <img id="modal-image" alt="Image agrandie" style="max-width: 100%; height: auto;">
+                <span id="nom"></span>
+                <span id="note"></span>
+                <span id="tag"></span>
+                <button id="closeModal" class="btn btn-close">Close</button>
+            </div>
+        </div>-->

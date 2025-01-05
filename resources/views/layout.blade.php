@@ -60,13 +60,14 @@
         @yield('contenu')
     </main>
 
-    <footer>
+    
+
+</body>
+<footer>
         <div class="lien-footer">
             <a href="#">Mentions légales</a>
             <a href="#">©COPYRIGHT MMI</a>
             <a href="#">Conditions d'utilisation</a>
         </div>
     </footer>
-
-</body>
 </html>

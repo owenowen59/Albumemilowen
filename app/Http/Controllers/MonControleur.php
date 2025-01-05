@@ -160,11 +160,21 @@ class MonControleur extends Controller
     }
 
     public function detailsAlbum($album_id)
-    {/*
-        $album = Album::with('photos')->findOrFail($id);
-    
-        return view('detailsAlbum', ['album' => $album]);*/
+    {
+        $album = Album::with('photos')->findOrFail($album_id);
+        $photos = Photo::with('tags')->get();
+        /*$photos = DB::select('SELECT photos.*, 
+        GROUP_CONCAT(tags.nom SEPARATOR ", ") AS tags
+        FROM photos
+        LEFT JOIN possede_tag ON photos.id = possede_tag.photo_id
+        LEFT JOIN tags ON possede_tag.tag_id = tags.id
+        WHERE photos.album_id = ?
+        GROUP BY photos.id', [$album_id]);
 
+        $photos = $photos ?? [];*/
+    
+        return view('detailsAlbum', ['album' => $album, 'photos' => $photos,]);
+/*
         $albums = DB::select('SELECT * FROM albums WHERE id = ?', [$album_id]);
         if (empty($albums)) {
             abort(404, "Album non trouvé");
@@ -183,7 +193,7 @@ class MonControleur extends Controller
         return view('detailsAlbum', [
             'albums' => $albums[0],
             'photos' => $photos,
-        ]);
+        ]);*/
     }
 
 
@@ -192,7 +202,7 @@ class MonControleur extends Controller
     $albums = Album::all();
     return view('ajouterphoto', compact('albums'));
     }
-
+/*
     public function enregistrerphoto(Request $request)
     {
     $messages = [
@@ -209,7 +219,7 @@ class MonControleur extends Controller
         'tags' => 'nullable|string',
         'album_id' => 'required|exists:albums,id',
     ], $messages);
-
+    
     $photo = new Photo();
     $photo->titre = $request->titre;
     $photo->note = $request->note;
@@ -217,8 +227,8 @@ class MonControleur extends Controller
 
     
     if ($request->photo_option === 'url') {
-        /* $path = $request->url->store('public/photos');
-        $photo->url = Storage::url($path); */
+        // $path = $request->url->store('public/photos');
+        //$photo->url = Storage::url($path); 
 
 
         $imageName = $request->url;
@@ -228,7 +238,7 @@ class MonControleur extends Controller
         $path = $request->file('local_file')->store('public/photos');
         $photo->url = Storage::url($path);
     }
-
+    
     $photo->save();
 
     // Gestion des tags
@@ -243,8 +253,51 @@ class MonControleur extends Controller
     }
 
     return redirect()->route('ajouterphoto')->with('success', 'Photo ajoutée avec succès.');
+    }*/
+public function enregistrerphoto(Request $request)
+{
+    $messages = [
+        'url.required_if' => 'URL requise lorsque vous choisissez option URL.',
+        'local_file.required_if' => 'Fichier local requis lorsque vous choisissez option fichier local.',
+    ];
+
+    $request->validate([
+        'titre' => 'required|string|max:255',
+        'photo_option' => 'required|in:url,local',
+        'url' => 'required_if:photo_option,url|url',
+        'local_file' => 'required_if:photo_option,local|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'note' => 'required|numeric|min:0|max:5',
+        'tags' => 'nullable|string',
+        'album_id' => 'required|exists:albums,id',
+    ], $messages);
+    
+    $photo = new Photo();
+    $photo->titre = $request->titre;
+    $photo->note = $request->note;
+    $photo->album_id = $request->album_id;
+
+    if ($request->photo_option === 'url') {
+        $photo->url = $request->url;
+    } else {
+        $path = $request->file('local_file')->store('public/photos');
+        $photo->url = Storage::url($path);
+    }
+    
+    $photo->save();
+
+    // Gestion des tags
+    if (!empty($request->tags)) {
+        $tagNames = array_filter(array_map('trim', explode(',', $request->tags)));
+        $tagIds = [];
+        foreach ($tagNames as $tagName) {
+            $tag = Tag::firstOrCreate(['nom' => $tagName]);
+            $tagIds[] = $tag->id;
+        }
+        $photo->tags()->sync($tagIds);
     }
 
+    return redirect()->route('ajouterphoto')->with('success', 'Photo ajoutée avec succès.');
+}
 
 
     public function ajouteralbum()
