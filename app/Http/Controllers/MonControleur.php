@@ -202,58 +202,7 @@ class MonControleur extends Controller
     $albums = Album::all();
     return view('ajouterphoto', compact('albums'));
     }
-/*
-    public function enregistrerphoto(Request $request)
-    {
-    $messages = [
-        'url.required_if' => 'URL requise lorsque vous choisissez option URL.',
-        'local_file.required_if' => 'fichier local requis lorsque vous choisissez option fichier local.',
-    ];
 
-    $request->validate([
-        'titre' => 'required|string|max:255',
-        'photo_option' => 'required|in:url,local',
-        'url' => 'nullable|required_if:photo_option,url|url',
-        'local_file' => 'nullable|required_if:photo_option,local|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'note' => 'required|numeric|min:0|max:5',
-        'tags' => 'nullable|string',
-        'album_id' => 'required|exists:albums,id',
-    ], $messages);
-    
-    $photo = new Photo();
-    $photo->titre = $request->titre;
-    $photo->note = $request->note;
-    $photo->album_id = $request->album_id;
-
-    
-    if ($request->photo_option === 'url') {
-        // $path = $request->url->store('public/photos');
-        //$photo->url = Storage::url($path); 
-
-
-        $imageName = $request->url;
-        $path = $imageName;
-        $photo->url = $path;
-    } else {
-        $path = $request->file('local_file')->store('public/photos');
-        $photo->url = Storage::url($path);
-    }
-    
-    $photo->save();
-
-    // Gestion des tags
-    if (!empty($request->tags)) {
-        $tagNames = array_filter(array_map('trim', explode(',', $request->tags))); // Supprime espaces vides
-        $tagIds = [];
-        foreach ($tagNames as $tagName) {
-            $tag = Tag::firstOrCreate(['nom' => $tagName]);
-            $tagIds[] = $tag->id;
-        }
-        $photo->tags()->sync($tagIds);
-    }
-
-    return redirect()->route('ajouterphoto')->with('success', 'Photo ajoutée avec succès.');
-    }*/
 public function enregistrerphoto(Request $request)
 {
     $messages = [
@@ -278,7 +227,8 @@ public function enregistrerphoto(Request $request)
 
     if ($request->photo_option === 'url') {
         $photo->url = $request->url;
-    } else {
+    } 
+    if ($request->photo_option === 'local') {
         $path = $request->file('local_file')->store('public/photos');
         $photo->url = Storage::url($path);
     }

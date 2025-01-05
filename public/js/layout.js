@@ -1,4 +1,32 @@
 /* Commun */
+document.addEventListener('DOMContentLoaded', (event) => {
+    const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+    
+    if (scrollToTopBtn) {
+        window.onscroll = function() {
+            const sectionAccueil = document.getElementById("Accueil");
+            const sectionPosition = sectionAccueil.offsetTop + sectionAccueil.offsetHeight;
+
+            if (window.scrollY > sectionPosition) {
+                scrollToTopBtn.style.display = "block";  
+            } else {
+                scrollToTopBtn.style.display = "none";   
+            }
+        };
+
+        
+        scrollToTopBtn.addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: "smooth" }); 
+        });
+    } else {
+        console.error('Le bouton scrollToTopBtn n\'a pas été trouvé dans le DOM');
+    }
+});
+
+
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     const burger = document.querySelector(".burger");

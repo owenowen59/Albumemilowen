@@ -1,4 +1,4 @@
-Ce Projet a été fait par <strong>Owen TROLONG</strong> et <strong>Émilien Agache </strong>  - groupe <strong>MMi2B1</strong>
+<p>Ce Projet a été fait par <strong>Owen TROLONG</strong> et <strong>Émilien Agache </strong>  - groupe <strong>MMi2B1</strong></p>
 
 
 

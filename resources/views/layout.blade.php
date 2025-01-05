@@ -52,7 +52,7 @@
     <button class="burger" aria-label="Menu">☰</button>
     
 </header>
-
+    <button id="scrollToTopBtn" title="Retour en haut">&#8593;</button>
    
 
     <main>
