@@ -70,8 +70,8 @@
         <div class="deux-triez-2">
             <a id="buttonazphoto" href="?sort=asc" class="trier-2">Trier A-Z</a>
             <a id="buttonzaphoto" href="?sort=desc" class="trier-2">Trier Z-A</a><br/>
-            <a id="noteaz" href="?sort=asc&sort_by=note" class="trier-2">Trier note 0 à 5 étoiles</a>
-            <a id="noteza" href="?sort=desc&sort_by=note" class="trier-2">Trier note 5 à 0 étoiles</a>
+            
+            <a id="sortButton" onclick="toggleSortOrder()" class="trier-2">Trier Note</a>
         </div>
     
 
@@ -123,6 +123,8 @@
 
 
 
+
+        
         <ul id="photo-list" class="photo-grid">
             @foreach($photos as $photo)
                 <li class="photo-item">
@@ -156,7 +158,36 @@
             </div>
         </div>
 
-        
+
+
+        <script>
+            let sortOrder = 'asc';
+
+            function toggleSortOrder() {
+                const photoList = document.getElementById('photo-list');
+                let photos = Array.from(photoList.getElementsByClassName('photo-item'));
+
+                
+                photos.sort((a, b) => {
+                    const noteA = parseFloat(a.querySelector('.image-modal').getAttribute('data-note'));
+                    const noteB = parseFloat(b.querySelector('.image-modal').getAttribute('data-note'));
+                    return sortOrder === 'asc' ? noteA - noteB : noteB - noteA;
+                });
+
+                
+                photoList.innerHTML = '';
+
+                
+                photos.forEach(photo => {
+                    photoList.appendChild(photo);
+                });
+
+                
+                sortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+            }
+        </script>
+
+
 
         @endsection
 
