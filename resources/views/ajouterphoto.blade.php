@@ -1,49 +1,91 @@
 @extends('layout')
 
 @section('contenu')
-<div class="container">
-    <h1>Ajouter une photo</h1>
-    @if (session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
 
-    <form action="{{ route('enregistrerphoto') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <!-- Champs du formulaire -->
-        <label for="titre">Titre de la photo</label>
-        <input type="text" name="titre" id="titre" required>
+<head>
+<link rel="stylesheet" type="text/css" href="{{asset('/css/ajouterphoto.css')}}"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" >
+</head>
 
-        <label>Option pour la photo</label>
-        <input type="radio" id="url_option" name="photo_option" value="url" checked>
-        <label for="url_option">URL</label>
-        <input type="radio" id="local_option" name="photo_option" value="local">
-        <label for="local_option">Fichier local</label>
+<body>
+    <section>
 
-        <div id="url_input">
-            <label for="url">URL</label>
-            <input type="url" name="url">
-        </div>
+        <h1 class="titre-1">AJOUTER UNE</h1>
+        <h1 class="titre-2">NOUVELLE PHOTO</h1>
 
-        <div id="local_input" class="d-none">
-            <label for="local_file">Fichier</label>
-            <input type="file" name="local_file" accept="image/*">
-        </div>
+        @if (session('success'))
+            <div class="alert alert-success">{{ session('success') }}</div>
+        @endif
 
-        <label for="note">Note</label>
-        <input type="number" name="note" min="0" max="10" required>
+        <form action="{{ route('enregistrerphoto') }}" method="POST" enctype="multipart/form-data" id="form">
+            @csrf
+            <!-- Champs du formulaire -->
+            
+            <div class="types-photo">
+                <input type="text" name="titre" id="select-album" required placeholder="Titre de votre photo...">
 
-        <label for="tags">Tags</label>
-        <input type="text" name="tags" placeholder="Exemple : nature, paysage">
+                <input type="url" name="url" id="select-album" required placeholder="URL de votre photo...">
+            </div>
 
-        <label for="album_id">Album</label>
-        <select name="album_id" required>
-            <option value="">Aucun</option>
-            @foreach($albums as $album)
-                <option value="{{ $album->id }}">{{ $album->titre }}</option>
-            @endforeach
-        </select>
+            <label class="titre-label-photo">Option pour la photo ?</label>
 
-        <button type="submit">Ajouter</button>
-    </form>
-</div>
+            <div id="url-local">
+                <div class="centre">
+                    <input type="radio" id="url_option" name="photo_option" value="url" checked>
+                    <label for="url_option">URL</label>
+                </div>
+                
+                <div class="centre">
+                    <input type="radio" id="local_option" name="photo_option" value="local">
+                    <label for="local_option">Fichier local</label>
+                </div>
+            </div>
+
+
+
+            <label class="custom-file-upload label" id="deux-rectangle">
+
+                <p>Choisissez un fichier</p>
+
+                <i class='bx bx-file'></i>
+
+                <input type="file" name="coverImage" accept="image/*" class="hidden" required>
+
+            </label>
+
+
+
+
+            <div class="note-tags">
+                    <input type="number" name="note" min="0" max="10" placeholder="Note...">
+                    <input type="text" name="tags" placeholder="Tags...">      
+            </div>
+
+
+
+            
+            <div class="types-album">
+                <label for="album_id" class="text">Quels types d’album ?</label>
+
+                <select name="album_id" required id="select-album">
+
+                    <option value="">Choisissez votre album</option>
+                    
+                    @foreach($albums as $album)
+                        <option value="{{ $album->id }}" id="taille-option">{{ $album->titre }}</option>
+                    @endforeach
+
+                </select>
+            </div>
+
+            <hr>
+
+            <div class="div-envoyer">
+                <button type="submit" class="bouton-envoyer">AJOUTER</button>
+            </div>
+
+        </form>
+
+    </section>
+</body>
 @endsection

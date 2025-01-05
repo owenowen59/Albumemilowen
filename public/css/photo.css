@@ -1,0 +1,419 @@
+#buttonzaphoto {
+    display: none;
+}
+
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+#modal span {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.deux-triez-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 95%;
+    margin-bottom: 15px;
+}
+
+.deux-triez-2 a {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+}
+
+.trier-2 {
+    color:black;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 10px;
+    height: auto; 
+    font-size: 16px;
+    border-radius: 28px;
+    text-decoration: none;
+}
+
+.trier-2:hover {
+    color:rgb(255, 255, 255);
+    background-color: #ccc;
+    transition: background-color 0.3s ease;
+}
+
+.position-du-form {
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    height: auto;
+    width: 95%;
+    margin-bottom: 15px;
+}
+
+#filter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+#tags-select {
+    padding: 10px;
+    border: 0px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+}
+
+#tags-select:hover, 
+#tags-select:focus {
+    border-color: #c48300;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+}
+
+#filter-button {
+    padding: 10px 20px;
+    background-color: #FFC145;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#filter-button:hover {
+    background-color: #c48300;
+}
+
+#filter-button:active {
+    transform: scale(0.98);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; 
+    padding: 20px;
+    list-style: none;
+    margin: 0;
+    align-items: stretch; 
+}
+
+.photo-item {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photo-item:hover {
+    transform: scale(1.05);
+}
+
+
+.photo-container {
+    width: 100%;
+    height: 150px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    background-color: #f0f0f0; 
+    border-radius: 8px;
+}
+
+.photo-container img {
+    width: auto;
+    height: 100%; 
+    max-width: 100%; 
+}
+
+.photo-title {
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Bouton supprimer */
+.btn-supprimer {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.btn-supprimer:hover {
+    background-color: #c0392b;
+}
+
+/* Modal */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    text-align: center;
+}
+
+#closeModal {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#closeModal:hover {
+    background-color: #2980b9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+    .deux-triez-2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        width: 95%;
+        margin-bottom: 15px;
+    }
+
+    .deux-triez-2 a {
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    }
+
+    .trier-2 {
+        color:black;
+        background-color: rgb(255, 255, 255);
+        padding: 10px 10px;
+        height: auto; 
+        font-size: 16px;
+        border-radius: 28px;
+        text-decoration: none;
+    }
+
+    .trier-2:hover {
+        color:rgb(255, 255, 255);
+        background-color: #ccc;
+        transition: background-color 0.3s ease;
+    }
+
+    .position-du-form {
+        flex-direction: column;
+        justify-content: center;
+        align-items: left;
+        height: auto;
+        width: 95%;
+        margin-bottom: 15px;
+    }
+
+    #filter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        max-width: 400px;
+        margin: 0 auto;
+        font-family: Arial, sans-serif;
+    }
+
+    #tags-select {
+        padding: 10px;
+        border: 0px solid #ddd;
+        border-radius: 10px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    }
+
+    #tags-select:hover, 
+    #tags-select:focus {
+        border-color: #c48300;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    }
+
+    #filter-button {
+        padding: 10px 20px;
+        background-color: #FFC145;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #filter-button:hover {
+        background-color: #c48300;
+    }
+
+    #filter-button:active {
+        transform: scale(0.98);
+    }
+
+
+
+
+    
+    @media (max-width: 768px) {
+        .photo-grid {
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
+        }
+    
+        .photo-container {
+            height: 120px; 
+        }
+    
+        .photo-title {
+            font-size: 14px;
+        }
+    
+        .btn-supprimer {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+    }
+    
+    
+    @media (max-width: 480px) {
+        .photo-grid {
+            grid-template-columns: 1fr; 
+            gap: 10px;
+        }
+    
+        .photo-container {
+            height: 100px;
+        }
+    
+        .photo-title {
+            font-size: 12px;
+        }
+    
+        .btn-supprimer {
+            padding: 6px 10px;
+            font-size: 10px;
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+

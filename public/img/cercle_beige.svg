@@ -3,11 +3,11 @@
   <defs>
     <style>
       .cls-1 {
-        fill: #ffb600;
-        stroke: #000;
+        fill: #ffd79a;
         stroke-miterlimit: 10;
+        filter: drop-shadow(0px 0px 40px rgb(0, 0, 0, 0.700));
       }
     </style>
   </defs>
-  <circle class="cls-1" cx="371.5" cy="371.5" r="371"/>
+  <circle class="cls-1" cx="370.5" cy="370.5" r="260"/>
 </svg>

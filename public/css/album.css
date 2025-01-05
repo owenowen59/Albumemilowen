@@ -1,5 +1,280 @@
-.toutalbum{
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; 
+}
+
+body {
+    background-color: #5b5f97;
+}
+
+#zaalbum {
+    display: none; 
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+}
+#zadate{
+    display: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+}
+
+
+
+
+
+
+
+section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titre-connexion {
+    color: white;
+    font-size: 45px;
+    padding-top: 60px;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+}
+
+.titre-2 {
+    color: white;
+    line-height: 10px;
+    padding-bottom: 60px;
+    font-size: 45px;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+}
+
+.deux-triez {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    height: auto;
+    width: 95%;
+    margin-bottom: 30px;
+}
+
+.deux-triez a {
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+}
+
+.deux-triez a:hover{
+    color: black;
+    background-color:#ffc145;
+}
+
+.trier {
+    color:black;
+    background-color: white;
+    padding: 10px 10px;
+    height: auto;
+    width: 25%; 
+    font-size: 12px;
+    border-radius: 28px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+.titre-album {
+    color: white;
+    font-size: 14px;
+    text-decoration:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-album{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding: 0px 15px;
+}
+
+.btn-supp {
+    background-color: #ffc145;
+    padding: 5px 6px;
+    border-radius: 24px;
+    border: 0px solid white;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    font-weight: 500;
+}
+
+.album-ul {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
-    gap: 10px;
+    grid-gap: 10px;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(3, auto);
+}
+
+
+.div-album {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.div-album img {
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 2px solid white;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+    section {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .titre-connexion {
+        color: white;
+        font-size: 30px;
+        padding-top: 60px;
+        text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+    }
+
+    .titre-2 {
+        color: white;
+        line-height: 10px;
+        padding-bottom: 60px;
+        font-size: 30px;
+        text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+    }
+
+    .deux-triez {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        height: auto;
+        width: 95%;
+        margin-bottom: 30px;
+    }
+
+    .deux-triez a {
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    }
+
+    .trier {
+        color:black;
+        background-color: white;
+        padding: 10px 10px;
+        height: auto;
+        width: 50%; 
+        font-size: 12px;
+        border-radius: 28px;
+        text-decoration: none;
+        margin-bottom: 10px;
+    }
+
+    .deux-triez a:hover{
+        color: black;
+        background-color:#ffc145;
+    }
+
+
+
+
+
+
+
+
+    .titre-album {
+        color: white;
+        font-size: 14px;
+        text-decoration:none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .grid-album{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        padding: 0px 15px;
+    }
+
+    .btn-supp {
+        background-color: #ffc145;
+        padding: 5px 6px;
+        border-radius: 24px;
+        border: 0px solid white;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+        font-weight: 500;
+    }
+
+    .album-ul {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-rows: auto;
+        grid-template-columns: repeat(3, auto);
+    }
+
+
+    .div-album {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .div-album img {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 2px solid white;
+
+    }
 }

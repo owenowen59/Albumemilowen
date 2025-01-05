@@ -1,0 +1,204 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; 
+}
+
+body {
+    background-color: #5b5f97;
+}
+
+
+
+
+
+
+.search-results-container {
+    padding: 40px; 
+    max-width: 1200px; 
+    margin: 0 auto;
+    background-color: #4a4a85; 
+    border-radius: 12px;
+}
+
+
+.search-results-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+.search-result-item {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+
+.result-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.result-text {
+    flex: 1;
+}
+
+.result-title {
+    font-size: 2em; 
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 15px;
+}
+
+.result-note,
+.result-album {
+    font-size: 1.2em; 
+    color: #666;
+    margin: 0;
+}
+
+/* Conteneur d'image */
+.result-image-container {
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.result-photo-image {
+    width: 200px; 
+    height: 150px; 
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+
+
+
+
+.no-results-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    font-size: 1.3em;
+    color: #555;
+    background-color: #f8d7da; 
+    border: 1px solid #f5c2c7; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
+}
+
+
+
+
+@media (max-width: 600px) {
+
+    section {
+        height: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .result-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .result-photo-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .no-results-message {
+        font-size: 1.1em; 
+        padding: 20px; 
+        max-width: 90%; 
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+section {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+

@@ -15,6 +15,13 @@ header {
     align-items: center;
     padding: 10px 20px;
     background: #575977;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+
+    /*position: fixed;
+    z-index: 1000;
+    left: 0;
+    right: 0;
+    width: 100%;*/
 }
 
 nav {
@@ -70,6 +77,11 @@ nav {
     border: none;
     color: white;
     cursor: pointer;
+}
+
+a:hover {
+    color: #ffde00; 
+    text-shadow: 0 0 10px rgba(202,228,225,2);
 }
 
 /*.burger span {
@@ -176,33 +188,18 @@ nav {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Le footer de la page pour l'application de l'album photo */
 
 footer {
     display: flex;
+    box-shadow: 0 -10px 50px rgba(0, 0, 0, 0.2);
     background: #575977;
     justify-content: space-around;
     align-items: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
     padding: 30px 0;
+    position:relative;
 }
 
 .lien-footer a{

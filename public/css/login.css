@@ -1,0 +1,274 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; 
+}
+
+body {
+    background-color: #5b5f97;
+}
+
+section {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titre-connexion {
+    color: white;
+    font-size: 45px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+#form {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+}
+
+#deux-rectangle {
+    padding: 10px 10px;
+    border: 0px solid rgb(255, 255, 255); 
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    margin-bottom: 15px;
+}
+
+.rectangle-envoyer {
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border-radius: 24px;
+    font-weight: 900;
+    font-size: medium;
+    padding: 10px;
+    border: 0px solid rgb(255, 255, 255); 
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    margin-bottom: 15px;
+}
+
+.rectangle-envoyer:hover {
+    color:black;
+    background-color: #ffc145;
+}
+
+#div-submit-horizontal {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.texte-souvenir {
+    color:white;
+    padding-right: 15px;
+}
+
+.bloc-ou {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+hr {
+    border: none; 
+    height: 5px;
+    background-color: rgb(255, 255, 255); 
+    width: 150px; 
+    padding: 0px 10px;
+}
+
+.ou {
+    color: white;
+    padding: 0px 10px;
+}
+
+.texte-compte {
+    display: flex;
+    justify-content: center;
+    color:white;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+.inscrivez-vous {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    background-color: white;
+    border-radius: 24px;
+    font-weight: 900;
+    padding: 10px 120px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+}
+
+.inscrivez-vous:hover {
+    color:black;
+    background-color: #ffc145;
+}
+
+.test {
+    background: url(../img/cercle_beige.svg), url(../img/cercle_jaune.svg);
+    background-repeat:no-repeat;
+    background-position: bottom -220px right 1100px, bottom -220px right 870px;    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+
+    section {
+        height: 80vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .titre-connexion {
+        color: white;
+        font-size: 30px;
+        padding-top: 30px;
+        padding-bottom: 20px;
+    }
+
+    #form {
+        display: flex;
+        align-items: left;
+        flex-direction: column;
+    }
+
+    #deux-rectangle {
+        padding: 10px 10px;
+        border: 0px solid rgb(255, 255, 255); 
+        background-color: white;
+        border-radius: 24px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+        margin-bottom: 15px;
+    }
+
+    .rectangle-envoyer {
+        color: rgb(0, 0, 0);
+        background-color: white;
+        border-radius: 24px;
+        font-weight: 900;
+        font-size: medium;
+        padding: 10px;
+        border: 0px solid rgb(255, 255, 255); 
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+        margin-bottom: 15px;
+    }
+
+    .rectangle-envoyer:hover {
+        color:black;
+        background-color: #ffc145;
+    }
+
+    #div-submit-horizontal {
+        display: flex;
+        align-items: center;
+        justify-content: left;
+    }
+
+    .texte-souvenir {
+        color:white;
+        padding-right: 15px;
+    }
+
+    .bloc-ou {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+
+    hr {
+        border: none; 
+        height: 5px;
+        background-color: rgb(255, 255, 255); 
+        width: 150px; 
+        padding: 0px 10px;
+    }
+
+    .ou {
+        color: white;
+        padding: 0px 10px;
+    }
+
+    .texte-compte {
+        display: flex;
+        justify-content: center;
+        color:white;
+        font-weight: 900;
+        margin-bottom: 15px;
+    }
+
+    .inscrivez-vous {
+        text-decoration: none;
+        color: rgb(0, 0, 0);
+        background-color: white;
+        border-radius: 24px;
+        font-weight: 900;
+        padding: 10px 120px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    }
+
+    .inscrivez-vous:hover {
+        color:black;
+        background-color: #ffc145;
+    }
+
+    .test {
+        background: url(../img/cercle_beige.svg), url(../img/cercle_jaune.svg);
+        background-repeat:no-repeat;
+        background-position: bottom -220px right 200px, bottom -190px right 40px;    
+    }
+}

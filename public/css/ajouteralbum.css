@@ -1,0 +1,210 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif; 
+}
+
+body {
+    background-color: #5b5f97;
+}
+
+section {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titre-connexion {
+    color: white;
+    font-size: 45px;
+    padding-top: 60px;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+}
+
+.titre-2 {
+    color: white;
+    line-height: 10px;
+    padding-bottom: 60px;
+    font-size: 45px;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.373);
+}
+
+#form {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    height: auto;
+    width: 40%;
+}
+
+#un-rectangle {
+    padding: 15px 10px;
+    border: 0px solid rgb(255, 255, 255); 
+    background-color: white;
+    border-radius: 24px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    margin-bottom: 15px;
+}
+
+#deux-rectangle {
+    padding: 10px 10px;
+    border: 0px solid rgb(255, 255, 255); 
+    background-color: white;
+    border-radius: 24px;
+    font-size: 13px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    margin-bottom: 15px;
+    color: rgb(130,130,130);
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.custom-file-upload i {
+    font-size: 30px;
+    padding-left: 400px;
+}
+
+.label {
+    display: flex;
+    align-items: center;
+}
+
+hr {
+    border: none; 
+    height: 5px;
+    background-color: rgb(255, 255, 255); 
+    max-width: 100%; 
+    padding: 0px 10px;
+    margin-bottom: 20px;
+}
+
+.div-envoyer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bouton-envoyer {
+    color: black;
+    background-color: white;
+    border-radius: 24px;
+    padding: 8px 40px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+    border: 0px solid rgb(255, 255, 255); 
+    font-weight: 900;
+    font-size: 18px;
+}
+
+.test {
+    background: url(../img/cercle_beige.svg), url(../img/cercle_jaune.svg);
+    background-repeat:no-repeat;
+    background-position: bottom -210px right -200px, bottom -230px right 30px; 
+}
+
+@media (max-width: 768px) {
+
+    section {
+        height: 80vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .titre-connexion {
+        color: white;
+        font-size: 30px;
+        padding-top: 60px;
+    }
+
+    .titre-2 {
+        color: white;
+        line-height: 10px;
+        padding-bottom: 60px;
+        font-size: 30px;
+    }
+
+    #form {
+        display: flex;
+        align-items: left;
+        flex-direction: column;
+        height: auto;
+        width: 80%;
+    }
+
+    #un-rectangle {
+        padding: 15px 10px;
+        border: 0px solid rgb(255, 255, 255); 
+        background-color: white;
+        border-radius: 24px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+        margin-bottom: 15px;
+    }
+
+    #deux-rectangle {
+        padding: 10px 10px;
+        border: 0px solid rgb(255, 255, 255); 
+        background-color: white;
+        border-radius: 24px;
+        font-size: 13px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+        margin-bottom: 15px;
+        color: rgb(130,130,130);
+        margin-bottom: 20px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .custom-file-upload i {
+        font-size: 30px;
+        padding-left: 120px;
+    }
+
+    .label {
+        display: flex;
+        align-items: center;
+    }
+
+    hr {
+        border: none; 
+        height: 5px;
+        background-color: rgb(255, 255, 255); 
+        max-width: 100%; 
+        padding: 0px 10px;
+        margin-bottom: 20px;
+    }
+
+    .div-envoyer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .bouton-envoyer {
+        color: black;
+        background-color: white;
+        border-radius: 24px;
+        padding: 8px 40px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.500);
+        border: 0px solid rgb(255, 255, 255); 
+        font-weight: 900;
+        font-size: 18px;
+    }
+
+    .test {
+        background: url(../img/cercle_beige.svg), url(../img/cercle_jaune.svg);
+        background-repeat:no-repeat;
+        background-position: bottom -160px left 180px, bottom -180px left 10px; 
+    }
+
+    
+
+}
