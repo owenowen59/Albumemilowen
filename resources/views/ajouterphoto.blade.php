@@ -17,12 +17,14 @@
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
+
         <form action="{{ route('enregistrerphoto') }}" method="POST" enctype="multipart/form-data" id="form">
             @csrf
-            <!-- Champs du formulaire -->
+            
             
             <div class="types-photo">
                 <input type="text" name="titre" id="select-album" required placeholder="Titre de votre photo...">
+
 
                 <input type="url" name="url" id="select-album" required placeholder="URL de votre photo...">
             </div>
@@ -57,7 +59,7 @@
 
 
             <div class="note-tags">
-                    <input type="number" name="note" min="0" max="10" placeholder="Note...">
+                    <input type="number" name="note" min="0" max="5" placeholder="Note...">
                     <input type="text" name="tags" placeholder="Tags...">      
             </div>
 

@@ -8,10 +8,56 @@
     @endforeach
 </ul> -->
 
+
 <head>
 <link rel="stylesheet" type="text/css" href="{{asset('/css/photo.css')}}"/>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;500;600&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" >
 </head>
+
+<style>
+    
+    #buttonzaphoto {
+    display: none; 
+    }
+    #noteaz{
+        display: none;
+    }
+    
+    #modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #modal span {
+            display: block;
+            margin-bottom: 10px;
+    }
+</style>
+
+<!--
+<a id="buttonazphoto" href="?sort=asc&sort_by=titre">Trier A-Z</a>
+<a id="buttonzaphoto" href="?sort=desc&sort_by=titre">Trier Z-A</a>
+<a id="noteaz" href="?sort=asc&sort_by=note">Trier par note 0-5 étoiles(Ascendant)</a>
+<a id="noteza" href="?sort=desc&sort_by=note">Trier par note 5-0 étoiles(Descendant)</a>
+<form method="get" action="{{ route('photo') }}">
+    <select name="tags[]" multiple>
+        <option value="">-- Sélectionnez des tags --</option>
+        @foreach($tags as $tag)
+            <option value="{{ $tag->nom }}" {{ in_array($tag->nom, $selectedTags ?? []) ? 'selected' : '' }}>
+                {{ $tag->nom }}
+            </option>
+        @endforeach
+    </select>
+    <button type="submit">Filtrer</button>
+</form>
+<script>
+-->
 
 <section class="sec">
     
@@ -112,29 +158,6 @@
 
         @endsection
 
-
-        <!--
-                <div id="module" class="module">
-                    <div class="module-content">
-                        <span class="close" onclick="closeModule()">&times;</span>
-                        <img id="module-img" src="" alt="image agrandie">
-                        <p id="module-text"></p>
-                    </div>
-                </div>-->
-
-
-
-         <!-- <p>Note : {{ $photo->note ?? 'Non notée' }}</p>
-            <h2>Tags :</h2>
-            @if($photo->tags->count() > 0)
-                <ul>
-                    @foreach ($photo->tags as $tag)
-                        <li>{{ $tag->nom }}</li>
-                    @endforeach
-                </ul>
-            @else
-                <p>Pas de tags associés à cette photo.</p>
-            @endif -->
 
 
 

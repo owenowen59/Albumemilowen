@@ -64,7 +64,7 @@ class MonControleur extends Controller
         return view('connexion');
     }
 
-
+/*
     function tagsphotos(Request $request)
     {
         $query = Photo::query();
@@ -90,13 +90,44 @@ class MonControleur extends Controller
             'tags' => $tags,
             'selectedTags' => $request->tags ?? [],
         ]);
-    }
+    }*/
     
-    function photos(){
-        $photos = Photo::all();
+    function photos(Request $request)
+    {
+        // Initialiser la requête pour Photo
+        $query = Photo::query();
 
-        
-        return view('photo', ["photos" => $photos]);
+        // Récupérer les tags disponibles pour l'affichage
+        $tags = Tag::all();
+
+        // Gestion du tri
+        $sortBy = $request->input('sort_by', 'titre'); // Par défaut, tri sur 'titre'
+        $sort = $request->input('sort', 'asc'); // Par défaut, ordre ascendant
+
+        // Valider la direction du tri
+        if (!in_array($sort, ['asc', 'desc'])) {
+            $sort = 'asc';
+        }
+
+        // Appliquer le tri à la requête
+        $query->orderBy($sortBy, $sort);
+
+        // Filtrer par tags si spécifiés
+        if ($request->has('tags') && !empty($request->tags)) {
+            $selectedTags = $request->tags;
+            $query->whereHas('tags', function ($q) use ($selectedTags) {
+                $q->whereIn('nom', $selectedTags);
+            });
+        }
+
+        // Récupérer les résultats de la requête
+        $photos = $query->get();
+
+        // Retourner la vue avec les données nécessaires
+        return view('photo', [
+            "photos" => $photos,
+            "tags" => $tags,
+        ]);
     }
 
     public function albums(){
@@ -109,15 +140,13 @@ class MonControleur extends Controller
 
     public function trialbum(Request $request)
     {
-        $sortBy = $request->input('sort_by', 'titre'); // Par défaut, on trie par 'titre'
-        $sort = $request->input('sort', 'asc'); // Par défaut, l'ordre est ascendant
+        $sortBy = $request->input('sort_by', 'titre'); 
+        $sort = $request->input('sort', 'asc'); 
 
-        // Vérifier que les valeurs de 'sort' sont valides
         if (!in_array($sort, ['asc', 'desc'])) {
-            $sort = 'asc'; // Valeur par défaut si invalide
+            $sort = 'asc'; 
         }
 
-        // Appliquer le tri en fonction de la colonne et de l'ordre spécifiés
         $albums = Album::orderBy($sortBy, $sort)->get();
 
         return view('albums', compact('albums'));
@@ -125,9 +154,8 @@ class MonControleur extends Controller
 
     public function triphoto(Request $request)
     {
-        $sort = $request->query('sort', 'asc'); // Par défaut : 'asc'
-        $photos = Photo::orderBy('titre', $sort)->get();
-    
+     
+        return $photos;
         return view('photo', compact('photos'));
     }
 
@@ -136,13 +164,12 @@ class MonControleur extends Controller
         $album = Album::with('photos')->findOrFail($id);
     
         return view('detailsAlbum', ['album' => $album]);*/
-            // Récupérer l'album
+
         $albums = DB::select('SELECT * FROM albums WHERE id = ?', [$album_id]);
         if (empty($albums)) {
             abort(404, "Album non trouvé");
         }
 
-        // On récupère les photos associés à l'album
         $photos = DB::select('SELECT photos.*, 
         GROUP_CONCAT(tags.nom SEPARATOR ", ") AS tags
         FROM photos
@@ -151,7 +178,6 @@ class MonControleur extends Controller
         WHERE photos.album_id = ?
         GROUP BY photos.id', [$album_id]);
 
-        // Le tableau `photos` sera un tableau vide si l'album sélectionné ne contient pas de photos
         $photos = $photos ?? [];
 
         return view('detailsAlbum', [
@@ -179,7 +205,7 @@ class MonControleur extends Controller
         'photo_option' => 'required|in:url,local',
         'url' => 'nullable|required_if:photo_option,url|url',
         'local_file' => 'nullable|required_if:photo_option,local|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'note' => 'required|numeric|min:0|max:10',
+        'note' => 'required|numeric|min:0|max:5',
         'tags' => 'nullable|string',
         'album_id' => 'required|exists:albums,id',
     ], $messages);
@@ -189,14 +215,12 @@ class MonControleur extends Controller
     $photo->note = $request->note;
     $photo->album_id = $request->album_id;
 
-    // Gestion des images
+    
     if ($request->photo_option === 'url') {
         /* $path = $request->url->store('public/photos');
         $photo->url = Storage::url($path); */
 
 
-         
-        
         $imageName = $request->url;
         $path = $imageName;
         $photo->url = $path;
