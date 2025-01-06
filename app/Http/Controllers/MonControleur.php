@@ -160,21 +160,19 @@ class MonControleur extends Controller
     }
 
     public function detailsAlbum($album_id)
-    {
-        $album = Album::with('photos')->findOrFail($album_id);
-        $photos = Photo::with('tags')->get();
-        /*$photos = DB::select('SELECT photos.*, 
-        GROUP_CONCAT(tags.nom SEPARATOR ", ") AS tags
-        FROM photos
-        LEFT JOIN possede_tag ON photos.id = possede_tag.photo_id
-        LEFT JOIN tags ON possede_tag.tag_id = tags.id
-        WHERE photos.album_id = ?
-        GROUP BY photos.id', [$album_id]);
+{
+    // Récupérer l'album avec ses photos
+    $album = Album::with('photos')->findOrFail($album_id);
 
-        $photos = $photos ?? [];*/
-    
-        return view('detailsAlbum', ['album' => $album, 'photos' => $photos,]);
-/*
+    // Récupérer les photos associées
+    $photos = $album->photos;
+
+    // Retourner la vue avec les données
+    return view('detailsAlbum', ['album' => $album, 'photos' => $photos]);
+        /*GROUP_CONCAT(tags.nom SEPARATOR ", ") AS tags*/
+        /*LEFT JOIN possede_tag ON photos.id = possede_tag.photo_id
+        LEFT JOIN tags ON possede_tag.tag_id = tags.id*/
+        /*
         $albums = DB::select('SELECT * FROM albums WHERE id = ?', [$album_id]);
         if (empty($albums)) {
             abort(404, "Album non trouvé");
