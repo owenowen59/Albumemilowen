@@ -25,7 +25,7 @@
                                 <h3 class="result-title">Photo : {{ $result->photo_titre }}</h3>
                                 <p class="result-note">Note : {{ $result->photo_note ?? 'Non notée' }}</p>
                                 <p class="result-album">Album : {{ $result->album_titre ?? 'Aucun album' }}</p>
-                                <p class="result-album">URL :</p>
+                                <p class="result-album">Image :</p>
                             </div>
                             <div class="result-image-container">
                                 <img src="{{ $result->photo_url }}" alt="Image de {{ $result->photo_titre }}" class="result-photo-image">

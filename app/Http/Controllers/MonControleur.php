@@ -161,13 +161,10 @@ class MonControleur extends Controller
 
     public function detailsAlbum($album_id)
 {
-    // Récupérer l'album avec ses photos
     $album = Album::with('photos')->findOrFail($album_id);
 
-    // Récupérer les photos associées
     $photos = $album->photos;
 
-    // Retourner la vue avec les données
     return view('detailsAlbum', ['album' => $album, 'photos' => $photos]);
         /*GROUP_CONCAT(tags.nom SEPARATOR ", ") AS tags*/
         /*LEFT JOIN possede_tag ON photos.id = possede_tag.photo_id
